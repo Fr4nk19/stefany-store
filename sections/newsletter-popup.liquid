@@ -1,0 +1,330 @@
+{{ 'newsletter-popup.css' | asset_url | stylesheet_tag }}
+
+<div
+  id="NewsletterPopup"
+  class="newsletter-popup-overlay"
+  data-delay="{{ section.settings.delay }}"
+  data-show-once="{{ section.settings.show_once }}"
+  style="display:none;"
+>
+  <div class="newsletter-popup">
+    {%- comment -%} Close button {%- endcomment -%}
+    <button class="newsletter-popup__close" aria-label="{{ 'general.accessibility.close' | t | default: 'Cerrar' }}">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="newsletter-popup__inner">
+      {%- comment -%} Left side - Image {%- endcomment -%}
+      <div class="newsletter-popup__image-side">
+        {%- if section.settings.image != blank -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 800 }}"
+            alt="{{ section.settings.image.alt | escape }}"
+            class="newsletter-popup__image"
+            loading="lazy"
+            width="800"
+            height="{{ 800 | divided_by: section.settings.image.aspect_ratio | round }}"
+          >
+        {%- else -%}
+          <div class="newsletter-popup__image-placeholder">
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Overlay content on image {%- endcomment -%}
+        <div class="newsletter-popup__image-overlay">
+          {%- if section.settings.overlay_subtitle != blank -%}
+            <span class="newsletter-popup__overlay-subtitle">{{ section.settings.overlay_subtitle }}</span>
+          {%- endif -%}
+          {%- if section.settings.overlay_title != blank -%}
+            <h3 class="newsletter-popup__overlay-title">{{ section.settings.overlay_title }}</h3>
+          {%- endif -%}
+          {%- if section.settings.overlay_description != blank -%}
+            <p class="newsletter-popup__overlay-description">{{ section.settings.overlay_description }}</p>
+          {%- endif -%}
+          {%- if section.settings.overlay_button_text != blank -%}
+            <span class="newsletter-popup__overlay-badge">{{ section.settings.overlay_button_text }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} Right side - Form {%- endcomment -%}
+      <div class="newsletter-popup__form-side">
+        <div class="newsletter-popup__form-content">
+          {%- if section.settings.logo != blank -%}
+            <img
+              src="{{ section.settings.logo | image_url: width: 200 }}"
+              alt="{{ shop.name }}"
+              class="newsletter-popup__logo"
+              width="200"
+              loading="lazy"
+            >
+          {%- endif -%}
+
+          {%- if section.settings.form_title != blank -%}
+            <h2 class="newsletter-popup__title">{{ section.settings.form_title }}</h2>
+          {%- endif -%}
+
+          {%- if section.settings.form_description != blank -%}
+            <p class="newsletter-popup__description">{{ section.settings.form_description }}</p>
+          {%- endif -%}
+
+          {%- form 'customer', id: 'NewsletterPopupForm', class: 'newsletter-popup__form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter,popup">
+
+            {%- if form.errors -%}
+              <div class="newsletter-popup__errors">
+                {{ form.errors | default_errors }}
+              </div>
+            {%- endif -%}
+
+            {%- if form.posted_successfully? -%}
+              <div class="newsletter-popup__success">
+                <p>{{ section.settings.success_message }}</p>
+              </div>
+            {%- else -%}
+              {%- comment -%} Email field {%- endcomment -%}
+              {%- if section.settings.show_email -%}
+                <div class="newsletter-popup__field">
+                  <input
+                    type="email"
+                    name="contact[email]"
+                    id="NewsletterPopupEmail"
+                    class="newsletter-popup__input"
+                    placeholder="{{ section.settings.email_placeholder }}"
+                    required
+                    autocomplete="email"
+                  >
+                  <label for="NewsletterPopupEmail" class="visually-hidden">
+                    {{ section.settings.email_placeholder }}
+                  </label>
+                </div>
+              {%- endif -%}
+
+              {%- comment -%} Birthday field {%- endcomment -%}
+              {%- if section.settings.show_birthday -%}
+                <div class="newsletter-popup__field">
+                  <input
+                    type="date"
+                    name="contact[note][birthday]"
+                    id="NewsletterPopupBirthday"
+                    class="newsletter-popup__input newsletter-popup__input--date"
+                    placeholder="{{ section.settings.birthday_placeholder }}"
+                  >
+                  <label for="NewsletterPopupBirthday" class="newsletter-popup__label-date">
+                    {{ section.settings.birthday_placeholder }}
+                  </label>
+                </div>
+              {%- endif -%}
+
+              {%- comment -%} Phone field {%- endcomment -%}
+              {%- if section.settings.show_phone -%}
+                <div class="newsletter-popup__field newsletter-popup__field--phone">
+                  <div class="newsletter-popup__phone-prefix">
+                    <select name="contact[note][phone_prefix]" id="NewsletterPopupPhonePrefix" class="newsletter-popup__select" aria-label="Código de país">
+                      <option value="+57" {{ section.settings.default_country_code | default: '+57' | strip }} selected>🇨🇴 +57</option>
+                      <option value="+1">🇺🇸 +1</option>
+                      <option value="+52">🇲🇽 +52</option>
+                      <option value="+34">🇪🇸 +34</option>
+                      <option value="+54">🇦🇷 +54</option>
+                      <option value="+56">🇨🇱 +56</option>
+                      <option value="+51">🇵🇪 +51</option>
+                      <option value="+593">🇪🇨 +593</option>
+                    </select>
+                  </div>
+                  <input
+                    type="tel"
+                    name="contact[note][phone]"
+                    id="NewsletterPopupPhone"
+                    class="newsletter-popup__input newsletter-popup__input--phone"
+                    placeholder="{{ section.settings.phone_placeholder }}"
+                    autocomplete="tel"
+                  >
+                  <label for="NewsletterPopupPhone" class="visually-hidden">
+                    {{ section.settings.phone_placeholder }}
+                  </label>
+                </div>
+              {%- endif -%}
+
+              <button type="submit" class="newsletter-popup__submit" style="background-color: {{ section.settings.button_color }}; color: {{ section.settings.button_text_color }};">
+                {{ section.settings.submit_text }}
+              </button>
+            {%- endif -%}
+          {%- endform -%}
+
+          <button class="newsletter-popup__dismiss" data-close-popup>
+            {{ section.settings.dismiss_text }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'newsletter-popup.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Newsletter Popup",
+  "tag": "section",
+  "class": "newsletter-popup-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Configuración general"
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "label": "Retraso antes de mostrar (segundos)",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 3,
+      "unit": "s"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_once",
+      "label": "Mostrar solo una vez por sesión",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Imagen lateral"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "overlay_subtitle",
+      "label": "Subtítulo sobre imagen",
+      "default": "¡Tu bienvenida merece un regalo!"
+    },
+    {
+      "type": "text",
+      "id": "overlay_title",
+      "label": "Título sobre imagen",
+      "default": "10% OFF"
+    },
+    {
+      "type": "textarea",
+      "id": "overlay_description",
+      "label": "Descripción sobre imagen",
+      "default": "Luce increíble con moda Colombiana hecha con amor"
+    },
+    {
+      "type": "text",
+      "id": "overlay_button_text",
+      "label": "Texto del badge sobre imagen",
+      "default": "10% OFF AQUÍ"
+    },
+    {
+      "type": "header",
+      "content": "Logo y textos del formulario"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Título del formulario",
+      "default": "SUSCRÍBETE A NUESTRA NEWSLETTER"
+    },
+    {
+      "type": "textarea",
+      "id": "form_description",
+      "label": "Descripción del formulario",
+      "default": "Únete a nuestra comunidad y recibe ofertas exclusivas, novedades y un descuento especial en tu primera compra."
+    },
+    {
+      "type": "header",
+      "content": "Campos del formulario"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email",
+      "label": "Mostrar campo de email",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Placeholder del email",
+      "default": "Tu correo electrónico"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_birthday",
+      "label": "Mostrar campo de cumpleaños",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "birthday_placeholder",
+      "label": "Placeholder del cumpleaños",
+      "default": "Tu fecha de cumpleaños"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone",
+      "label": "Mostrar campo de teléfono",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phone_placeholder",
+      "label": "Placeholder del teléfono",
+      "default": "Número de celular"
+    },
+    {
+      "type": "header",
+      "content": "Botones y mensajes"
+    },
+    {
+      "type": "text",
+      "id": "submit_text",
+      "label": "Texto del botón de envío",
+      "default": "SUSCRIBIRSE"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Color del botón",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Color del texto del botón",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "dismiss_text",
+      "label": "Texto para cerrar",
+      "default": "En otro momento"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Mensaje de éxito",
+      "default": "¡Gracias por suscribirte! Revisa tu correo para tu código de descuento."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter Popup",
+      "category": "Promotional"
+    }
+  ]
+}
+{% endschema %}
