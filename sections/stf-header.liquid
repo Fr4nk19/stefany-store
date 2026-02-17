@@ -94,15 +94,25 @@
   /* ============================================
      HEADER
   ============================================ */
+  {% if template.name == 'index' %}
   #shopify-section-{{ section.id }} {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 999;
   }
+  {% else %}
+  #shopify-section-{{ section.id }} {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+  }
+  {% endif %}
   .site-header {
     position: relative;
     z-index: 1000;
+    background: #fff;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
   .site-header--transparent {
@@ -110,6 +120,16 @@
     top: 0; left: 0; right: 0;
     background: transparent;
   }
+
+  /* ── Scrolled state ── */
+  .site-header--scrolled {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+  .site-header--scrolled .header__nav-link,
+  .site-header--scrolled .header__icon,
+  .site-header--scrolled .header__hamburger { color: #1a1a1a; }
+  .site-header--scrolled .header__logo-img { filter: none; }
   .site-header--transparent .header__inner { border-bottom: none; }
   .site-header--transparent .header__nav-link,
   .site-header--transparent .header__icon,
@@ -997,7 +1017,7 @@
 {%- endif -%}
 
 {% comment %} ══════════════ HEADER ══════════════ {% endcomment %}
-<header class="site-header {% if section.settings.transparent_header %}site-header--transparent{% endif %}" id="stfHeader">
+<header class="site-header {% if section.settings.transparent_header and template.name == 'index' %}site-header--transparent{% endif %}" id="stfHeader">
   <div class="header__inner">
 
     {%- comment -%} HAMBURGER (mobile only) {%- endcomment -%}
@@ -1393,6 +1413,24 @@ document.addEventListener('DOMContentLoaded', function() {
     if (next) next.addEventListener('click', function(){ clearInterval(timer); go(cur+1); start(); });
     start();
   }
+
+  /* ── Scroll: toggle solid header on scroll ── */
+  (function() {
+    var stfHeader = document.getElementById('stfHeader');
+    if (!stfHeader) return;
+    var scrollThreshold = 50;
+
+    function onScroll() {
+      if (window.pageYOffset > scrollThreshold) {
+        stfHeader.classList.add('site-header--scrolled');
+      } else {
+        stfHeader.classList.remove('site-header--scrolled');
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); /* run once on load in case page is already scrolled */
+  })();
 
   /* ── Mega Menu (auto-discovers N menus via data attributes) ── */
   var header  = document.getElementById('stfHeader');
