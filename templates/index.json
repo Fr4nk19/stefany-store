@@ -694,6 +694,33 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "newsletter_popup_7Cgazd": {
+      "type": "newsletter-popup",
+      "name": "Newsletter Popup",
+      "settings": {
+        "delay": 3,
+        "show_once": false,
+        "image": "shopify://shop_images/model-in-summer-clothes.jpg",
+        "overlay_subtitle": "¡Tu bienvenida merece un regalo!",
+        "overlay_title": "10% OFF",
+        "overlay_description": "Luce increíble con moda Colombiana hecha con amor",
+        "overlay_button_text": "10% OFF AQUÍ",
+        "logo": "shopify://shop_images/STEFANY_-_LOGO.png",
+        "form_title": "SUSCRÍBETE A NUESTRA NEWSLETTER",
+        "form_description": "Únete a nuestra comunidad y recibe ofertas exclusivas, novedades y un descuento especial en tu primera compra.",
+        "show_email": true,
+        "email_placeholder": "Tu correo electrónico",
+        "show_birthday": true,
+        "birthday_placeholder": "Tu fecha de cumpleaños",
+        "show_phone": true,
+        "phone_placeholder": "Número de celular",
+        "submit_text": "SUSCRIBIRSE",
+        "button_color": "#000000",
+        "button_text_color": "#FFFFFF",
+        "dismiss_text": "En otro momento",
+        "success_message": "¡Gracias por suscribirte! Revisa tu correo para tu código de descuento."
+      }
     }
   },
   "order": [
@@ -701,6 +728,7 @@
     "section_Ax8CMB",
     "collection_list_mcURmi",
     "product_list_4jqyPz",
-    "media_with_content_aF6TTD"
+    "media_with_content_aF6TTD",
+    "newsletter_popup_7Cgazd"
   ]
 }

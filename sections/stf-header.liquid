@@ -1185,7 +1185,7 @@
 <aside class="stf-cart-drawer" id="stfCartDrawer" aria-label="Shopping cart">
   <div class="stf-cart-drawer__header">
     <h2 class="stf-cart-drawer__title">
-      {{ 'sections.cart.title' | t | default: 'Tu carrito' }}
+      Tu carrito
       <span class="stf-cart-drawer__badge" id="stfCartDrawerBadge" {% unless cart.item_count > 0 %}style="display:none"{% endunless %}>{{ cart.item_count }}</span>
     </h2>
     <button class="stf-cart-drawer__close" id="stfCartClose" aria-label="Close cart">

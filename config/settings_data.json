@@ -57,6 +57,7 @@
     "secondary_button_border_width": 1,
     "button_border_radius_secondary": 0,
     "cart_type": "drawer",
+    "product_title_case": "uppercase",
     "cart_price_font": "body",
     "drawer_drop_shadow": true,
     "icon_stroke": "thin",
@@ -223,8 +224,8 @@
         "settings": {
           "logo_width": 36,
           "transparent_header": true,
-          "show_wishlist": true,
-          "show_announcement": true,
+          "show_wishlist": false,
+          "show_announcement": false,
           "announcement_bg": "#030302",
           "announcement_text_color": "#ffffff"
         }
