@@ -124,8 +124,7 @@
                 <div class="newsletter-popup__field newsletter-popup__field--phone">
                   <div class="newsletter-popup__phone-prefix">
                     <select name="contact[note][phone_prefix]" id="NewsletterPopupPhonePrefix" class="newsletter-popup__select" aria-label="Código de país">
-                      <option value="+57" {{ section.settings.default_country_code | default: '+57' | strip }} selected>🇨🇴 +57</option>
-                      <option value="+503">SV +503</option>
+                      <option value="+503" {{ section.settings.default_country_code | default: '+503' | strip }} selected>SV +503</option>
                       <option value="+502">GT +502</option>
                       <option value="+504">HN +504</option>
                       <option value="+505">NI +505</option>
