@@ -112,7 +112,8 @@
   }
   .site-header--transparent .header__inner { border-bottom: none; }
   .site-header--transparent .header__nav-link,
-  .site-header--transparent .header__icon { color: rgba(255,255,255,0.9); }
+  .site-header--transparent .header__icon,
+  .site-header--transparent .header__hamburger { color: rgba(255,255,255,0.9); }
   .site-header--transparent .header__logo-img { filter: brightness(0) invert(1); }
 
   .site-header--transparent:hover,
@@ -120,7 +121,9 @@
   .site-header--transparent:hover .header__nav-link,
   .site-header--transparent.menu-open .header__nav-link,
   .site-header--transparent:hover .header__icon,
-  .site-header--transparent.menu-open .header__icon { color: #1a1a1a; }
+  .site-header--transparent.menu-open .header__icon,
+  .site-header--transparent:hover .header__hamburger,
+  .site-header--transparent.menu-open .header__hamburger { color: #1a1a1a; }
   .site-header--transparent:hover .header__logo-img,
   .site-header--transparent.menu-open .header__logo-img { filter: none; }
 
@@ -413,11 +416,236 @@
   }
 
   /* ============================================
-     MOBILE
+     HAMBURGER BUTTON (mobile only)
+  ============================================ */
+  .header__hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 2;
+    color: #1a1a1a;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .header__hamburger svg { width: 22px; height: 22px; }
+
+  /* ============================================
+     MOBILE DRAWER
+  ============================================ */
+  .mobile-drawer-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .mobile-drawer-overlay.active { opacity: 1; visibility: visible; }
+
+  .mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85%;
+    max-width: 380px;
+    height: 100%;
+    background: #fff;
+    z-index: 1101;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .mobile-drawer.active { transform: translateX(0); }
+
+  .mobile-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0;
+  }
+  .mobile-drawer__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1a1a1a;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-drawer__close svg { width: 22px; height: 22px; }
+
+  .mobile-drawer__body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 0;
+  }
+
+  .mobile-drawer__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .mobile-drawer__nav-item {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .mobile-drawer__nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .mobile-drawer__nav-link:hover,
+  .mobile-drawer__nav-link:active { background: #f9f9f9; }
+  .mobile-drawer__nav-link svg {
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    color: #999;
+  }
+  .mobile-drawer__nav-item.open > .mobile-drawer__nav-link svg {
+    transform: rotate(180deg);
+  }
+
+  /* Accordion submenu */
+  .mobile-drawer__submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: #fafafa;
+  }
+  .mobile-drawer__nav-item.open > .mobile-drawer__submenu {
+    max-height: 800px;
+  }
+
+  .mobile-drawer__submenu-group {
+    padding: 8px 20px 12px 28px;
+  }
+  .mobile-drawer__submenu-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+    padding-top: 8px;
+  }
+  .mobile-drawer__submenu-link {
+    display: block;
+    font-size: 14px;
+    color: #444;
+    text-decoration: none;
+    padding: 6px 0;
+    transition: color 0.15s;
+  }
+  .mobile-drawer__submenu-link:hover { color: #1a1a1a; }
+
+  /* Activity cards in mobile drawer */
+  .mobile-drawer__activity-list {
+    padding: 8px 20px 12px 28px;
+  }
+  .mobile-drawer__activity-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .mobile-drawer__activity-item img {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  .mobile-drawer__activity-placeholder {
+    width: 48px; height: 48px;
+    border-radius: 6px;
+    background: #eee;
+    flex-shrink: 0;
+  }
+
+  /* Drawer footer with shop-all */
+  .mobile-drawer__submenu-footer {
+    padding: 4px 20px 12px 28px;
+  }
+  .mobile-drawer__shop-all {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1.5px solid #1a1a1a;
+    background: transparent;
+    color: #1a1a1a;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .mobile-drawer__shop-all:hover { background: #1a1a1a; color: #fff; }
+
+  .mobile-drawer__footer {
+    border-top: 1px solid #eee;
+    padding: 16px 20px;
+    flex-shrink: 0;
+  }
+  .mobile-drawer__footer-links {
+    display: flex;
+    gap: 20px;
+  }
+  .mobile-drawer__footer-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #666;
+    text-decoration: none;
+  }
+  .mobile-drawer__footer-link svg { width: 18px; height: 18px; }
+  .mobile-drawer__footer-link:hover { color: #1a1a1a; }
+
+  /* ============================================
+     MOBILE RESPONSIVE
   ============================================ */
   @media (max-width: 991px) {
-    .header__nav, .mega-menu { display: none !important; }
+    .header__nav, .mega-menu, .mega-menu-overlay { display: none !important; }
     .header__inner { padding: 12px 20px; }
+    .header__hamburger { display: flex; }
+    .header__logo-img { max-width: {{ section.settings.logo_width | times: 0.8 | ceil }}px; }
+    .header__icons { gap: 12px; }
+  }
+
+  @media (min-width: 992px) {
+    .mobile-drawer,
+    .mobile-drawer-overlay,
+    .header__hamburger { display: none !important; }
+  }
+
+  /* ============================================
+     ANNOUNCEMENT – MOBILE TWEAKS
+  ============================================ */
+  @media (max-width: 991px) {
+    .stf-announcement__inner { gap: 12px; padding: 0 12px; }
+    .stf-announcement__slides { min-width: 200px; }
+    .stf-announcement__slide { font-size: 11px; }
   }
 {%- endstyle -%}
 
@@ -453,6 +681,11 @@
 {% comment %} ══════════════ HEADER ══════════════ {% endcomment %}
 <header class="site-header {% if section.settings.transparent_header %}site-header--transparent{% endif %}" id="stfHeader">
   <div class="header__inner">
+
+    {%- comment -%} HAMBURGER (mobile only) {%- endcomment -%}
+    <button class="header__hamburger" id="stfHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="stfMobileDrawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
 
     {%- comment -%} LOGO {%- endcomment -%}
     <a href="/" class="header__logo" aria-label="{{ shop.name }}">
@@ -631,6 +864,137 @@
 
 <div class="mega-menu-overlay" id="stfOverlay"></div>
 
+{% comment %} ══════════════ MOBILE DRAWER ══════════════ {% endcomment %}
+<div class="mobile-drawer-overlay" id="stfMobileOverlay"></div>
+<nav class="mobile-drawer" id="stfMobileDrawer" aria-label="Mobile navigation">
+  <div class="mobile-drawer__header">
+    {%- if section.settings.logo != blank -%}
+      <a href="/" aria-label="{{ shop.name }}">
+        {{ section.settings.logo | image_url: width: 140 | image_tag: class: 'header__logo-img', style: 'max-width:100px;height:auto;', alt: shop.name }}
+      </a>
+    {%- else -%}
+      <a href="/" style="font-size:18px;font-weight:700;color:#1a1a1a;text-decoration:none;">{{ shop.name }}</a>
+    {%- endif -%}
+    <button class="mobile-drawer__close" id="stfDrawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <div class="mobile-drawer__body">
+    <ul class="mobile-drawer__nav">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'menu_item' -%}
+          {%- assign menu_slug = block.settings.title | handleize -%}
+          {%- assign owner_index = forloop.index0 -%}
+
+          {%- comment -%} Find where the next menu_item starts {%- endcomment -%}
+          {%- assign next_owner = section.blocks.size -%}
+          {%- assign found_self = false -%}
+          {%- for b in section.blocks -%}
+            {%- if b.type == 'menu_item' -%}
+              {%- if found_self -%}
+                {%- assign next_owner = forloop.index0 -%}
+                {%- break -%}
+              {%- endif -%}
+              {%- if b.id == block.id -%}
+                {%- assign found_self = true -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- comment -%} Check if this menu item has children {%- endcomment -%}
+          {%- assign has_children = false -%}
+          {%- if block.settings.menu_type != 'link_only' -%}
+            {%- for child in section.blocks -%}
+              {%- assign ci = forloop.index0 -%}
+              {%- if ci > owner_index and ci < next_owner -%}
+                {%- assign has_children = true -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+
+          <li class="mobile-drawer__nav-item" {% if has_children %}data-accordion{% endif %}>
+            {%- if has_children -%}
+              <a href="#" class="mobile-drawer__nav-link" data-accordion-toggle>
+                {{ block.settings.title }}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+              </a>
+              <div class="mobile-drawer__submenu">
+                {%- if block.settings.menu_type == 'megamenu_shop' -%}
+                  {%- comment -%} Render linklist columns {%- endcomment -%}
+                  {%- for child in section.blocks -%}
+                    {%- assign ci = forloop.index0 -%}
+                    {%- if ci > owner_index and ci < next_owner and child.type == 'menu_linklist' -%}
+                      <div class="mobile-drawer__submenu-group">
+                        {%- if child.settings.heading != blank -%}
+                          <div class="mobile-drawer__submenu-title">{{ child.settings.heading }}</div>
+                        {%- endif -%}
+                        {%- assign ll = child.settings.linklist -%}
+                        {%- if ll != blank -%}
+                          {%- for link in linklists[ll].links -%}
+                            <a href="{{ link.url }}" class="mobile-drawer__submenu-link">{{ link.title }}</a>
+                          {%- endfor -%}
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                {%- elsif block.settings.menu_type == 'megamenu_activities' -%}
+                  {%- comment -%} Render activity cards {%- endcomment -%}
+                  <div class="mobile-drawer__activity-list">
+                    {%- for child in section.blocks -%}
+                      {%- assign ci = forloop.index0 -%}
+                      {%- if ci > owner_index and ci < next_owner and child.type == 'activity_card' -%}
+                        <a href="{{ child.settings.url | default: '#' }}" class="mobile-drawer__activity-item">
+                          {%- if child.settings.image != blank -%}
+                            {{ child.settings.image | image_url: width: 96 | image_tag: loading: 'lazy' }}
+                          {%- else -%}
+                            <div class="mobile-drawer__activity-placeholder"></div>
+                          {%- endif -%}
+                          {{ child.settings.title }}
+                        </a>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                  {%- if block.settings.shop_all_url != blank -%}
+                    <div class="mobile-drawer__submenu-footer">
+                      <a href="{{ block.settings.shop_all_url }}" class="mobile-drawer__shop-all">SHOP ALL</a>
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
+            {%- else -%}
+              <a href="{{ block.settings.url | default: '#' }}" class="mobile-drawer__nav-link">
+                {{ block.settings.title }}
+              </a>
+            {%- endif -%}
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+
+  <div class="mobile-drawer__footer">
+    <div class="mobile-drawer__footer-links">
+      <a href="{{ routes.search_url }}" class="mobile-drawer__footer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </a>
+      <a href="{{ routes.account_url }}" class="mobile-drawer__footer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Account
+      </a>
+      {%- if section.settings.show_wishlist -%}
+        <a href="/pages/wishlist" class="mobile-drawer__footer-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Wishlist
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</nav>
+
 {% comment %} ══════════════ JAVASCRIPT ══════════════ {% endcomment %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -691,6 +1055,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelectorAll('[data-trigger]').forEach(function(l) {
     l.addEventListener('click', function(e){ if (window.innerWidth > 991) e.preventDefault(); });
+  });
+
+  /* ── Mobile Drawer ── */
+  var hamburger = document.getElementById('stfHamburger');
+  var mobileDrawer = document.getElementById('stfMobileDrawer');
+  var mobileOverlay = document.getElementById('stfMobileOverlay');
+  var drawerClose = document.getElementById('stfDrawerClose');
+
+  function openDrawer() {
+    if (mobileDrawer) mobileDrawer.classList.add('active');
+    if (mobileOverlay) mobileOverlay.classList.add('active');
+    if (hamburger) hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    if (mobileDrawer) mobileDrawer.classList.remove('active');
+    if (mobileOverlay) mobileOverlay.classList.remove('active');
+    if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger) hamburger.addEventListener('click', openDrawer);
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (mobileOverlay) mobileOverlay.addEventListener('click', closeDrawer);
+
+  /* ── Accordion toggles ── */
+  document.querySelectorAll('[data-accordion-toggle]').forEach(function(toggle) {
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      var parentItem = toggle.closest('.mobile-drawer__nav-item');
+      if (!parentItem) return;
+
+      var isOpen = parentItem.classList.contains('open');
+
+      /* Close all other open items */
+      document.querySelectorAll('.mobile-drawer__nav-item.open').forEach(function(item) {
+        item.classList.remove('open');
+      });
+
+      /* Toggle current */
+      if (!isOpen) {
+        parentItem.classList.add('open');
+      }
+    });
   });
 });
 </script>
