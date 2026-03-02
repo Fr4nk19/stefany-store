@@ -142,6 +142,55 @@
         "padding-block-end": 48
       }
     },
+    "features_bar_NJaPxJ": {
+      "type": "features-bar",
+      "blocks": {
+        "feature_item_rLR6Eg": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "award",
+            "title": "20 Años de Experiencia",
+            "subtitle": "Satisfaccion de nuestros clientes desde 2004"
+          }
+        },
+        "feature_item_jyRJMB": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "heart",
+            "title": "Comprometidos cin nuestros clientes",
+            "subtitle": "Estamos aquí para ayudarte"
+          }
+        },
+        "feature_item_m6VRF8": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "truck",
+            "title": "Envíos rapidos",
+            "subtitle": "Hasta la puerta de tu casa"
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_rLR6Eg",
+        "feature_item_jyRJMB",
+        "feature_item_m6VRF8"
+      ],
+      "name": "Features Bar",
+      "settings": {
+        "color_scheme": "",
+        "icon_color": "#030302",
+        "title_size": 14,
+        "subtitle_size": 12,
+        "text_alignment": "left",
+        "icon_size": 40,
+        "show_dividers": true,
+        "divider_color": "#e6e6e6",
+        "divider_width": 1,
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "gap": 32
+      }
+    },
     "section_Ax8CMB": {
       "type": "section",
       "blocks": {
@@ -295,12 +344,9 @@
           "basicas",
           "camisetas",
           "tops",
-          "conjuntos",
-          "vestidos",
-          "pantalones",
-          "shorts"
+          "vestidos"
         ],
-        "layout_type": "carousel",
+        "layout_type": "bento",
         "carousel_on_mobile": true,
         "columns": 3,
         "mobile_columns": "2",
@@ -699,8 +745,8 @@
       "type": "newsletter-popup",
       "name": "Newsletter Popup",
       "settings": {
-        "delay": 3,
-        "show_once": false,
+        "delay": 5,
+        "show_once": true,
         "image": "shopify://shop_images/model-in-summer-clothes.jpg",
         "overlay_subtitle": "¡Tu bienvenida merece un regalo!",
         "overlay_title": "10% OFF",
@@ -717,7 +763,7 @@
         "phone_placeholder": "Número de celular",
         "submit_text": "SUSCRIBIRSE",
         "button_color": "#000000",
-        "button_text_color": "#FFFFFF",
+        "button_text_color": "#ffffff",
         "dismiss_text": "En otro momento",
         "success_message": "¡Gracias por suscribirte! Revisa tu correo para tu código de descuento."
       }
@@ -725,6 +771,7 @@
   },
   "order": [
     "hero_rhMed7",
+    "features_bar_NJaPxJ",
     "section_Ax8CMB",
     "collection_list_mcURmi",
     "product_list_4jqyPz",
