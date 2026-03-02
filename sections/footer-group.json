@@ -11,6 +11,34 @@
   "type": "footer",
   "name": "Footer",
   "sections": {
+    "stf_footer": {
+      "type": "stf-footer",
+      "disabled": false,
+      "settings": {
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "contact_heading": "Contáctanos",
+        "contact_phone": "+503 7690 6326",
+        "contact_email": "ventasstefanymoda@gmail.com",
+        "branches_heading": "Sucursales",
+        "branch_1_name": "San Salvador - Centro Histórico",
+        "branch_1_address": "Centro de, 5 ave. sur, sobre, C. Arce local #5, San Salvador 1101",
+        "branch_1_hours": "Lunes a Sábado: 8:30 am – 5:30 pm",
+        "branch_2_name": "Santa Rosa de Lima",
+        "branch_2_address": "4a Avenida Sur, Santa Rosa de Lima CP 3101",
+        "branch_2_hours": "Lunes a Sábado: 8:00 am – 5:00 pm",
+        "info_heading": "Información",
+        "info_menu": "footer",
+        "newsletter_heading": "Regístrate",
+        "newsletter_description": "Suscríbete para recibir las últimas colecciones",
+        "newsletter_type": "phone",
+        "newsletter_placeholder": "Número de teléfono",
+        "newsletter_button_label": "ENVIAR",
+        "logo_text": "STEFANY",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "section_9FjKrC": {
       "type": "section",
       "blocks": {
@@ -189,6 +217,7 @@
     }
   },
   "order": [
+    "stf_footer",
     "section_9FjKrC",
     "footer",
     "utilities"
