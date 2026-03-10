@@ -1,0 +1,576 @@
+{%- liquid
+  assign image_count = section.blocks.size
+  assign columns = section.settings.columns
+-%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+
+<div
+  class="instagram-feed-section color-{{ section.settings.color_scheme }}"
+  style="
+    --instagram-padding-top: {{ section.settings.padding_top }}px;
+    --instagram-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --instagram-gap: {{ section.settings.gap }}px;
+    --instagram-columns: {{ columns }};
+    --instagram-corner-radius: {{ section.settings.corner_radius }}px;
+  "
+  data-section-id="{{ section.id }}"
+  data-section-type="instagram-feed"
+>
+  <div class="instagram-feed-section__inner page-width">
+
+    {%- comment -%} Header {%- endcomment -%}
+    <div class="instagram-feed-section__header">
+      {%- if section.settings.title != blank -%}
+        <h2 class="instagram-feed-section__title">{{ section.settings.title | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <p class="instagram-feed-section__subtitle">{{ section.settings.subtitle | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Feed / Slider {%- endcomment -%}
+    {%- if image_count > 0 -%}
+      <div class="instagram-feed-section__wrapper" aria-label="{{ section.settings.title | escape }}">
+
+        {%- comment -%} Previous arrow {%- endcomment -%}
+        {%- if section.settings.show_arrows and image_count > columns -%}
+          <button
+            class="instagram-feed-section__arrow instagram-feed-section__arrow--prev"
+            aria-label="Previous"
+            data-direction="prev"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+        {%- endif -%}
+
+        <div class="instagram-feed-section__track-container">
+          <div class="instagram-feed-section__track" role="list">
+            {%- for block in section.blocks -%}
+              <div
+                class="instagram-feed-section__item"
+                role="listitem"
+                {{ block.shopify_attributes }}
+              >
+                {%- if block.settings.image != blank -%}
+                  {%- assign img_url = block.settings.image | image_url: width: 600 -%}
+                  <a
+                    {% if block.settings.link != blank %}
+                      href="{{ block.settings.link }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    {% else %}
+                      href="{{ section.settings.instagram_url }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    {% endif %}
+                    class="instagram-feed-section__link"
+                    aria-label="{{ block.settings.alt_text | default: section.settings.title | escape }}"
+                  >
+                    <div class="instagram-feed-section__image-wrapper">
+                      <img
+                        src="{{ img_url }}"
+                        alt="{{ block.settings.alt_text | default: section.settings.title | escape }}"
+                        width="600"
+                        height="600"
+                        loading="lazy"
+                        class="instagram-feed-section__image"
+                      >
+                      <div class="instagram-feed-section__overlay" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                      </div>
+                    </div>
+                  </a>
+                {%- else -%}
+                  <div class="instagram-feed-section__image-wrapper instagram-feed-section__image-wrapper--placeholder">
+                    {{ 'lifestyle-' | append: forloop.index | placeholder_svg_tag: 'instagram-feed-section__placeholder' }}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        {%- comment -%} Next arrow {%- endcomment -%}
+        {%- if section.settings.show_arrows and image_count > columns -%}
+          <button
+            class="instagram-feed-section__arrow instagram-feed-section__arrow--next"
+            aria-label="Next"
+            data-direction="next"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        {%- endif -%}
+
+      </div>
+    {%- else -%}
+      <div class="instagram-feed-section__empty">
+        <p>{{ 'sections.instagram_feed.no_images' | t | default: 'Add images from the theme editor to display your Instagram feed.' }}</p>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} CTA Button {%- endcomment -%}
+    {%- if section.settings.button_label != blank -%}
+      <div class="instagram-feed-section__cta">
+        <a
+          href="{{ section.settings.instagram_url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="instagram-feed-section__button button button--primary"
+        >
+          {{- section.settings.button_label | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% stylesheet %}
+  .instagram-feed-section {
+    padding-block-start: var(--instagram-padding-top, 48px);
+    padding-block-end: var(--instagram-padding-bottom, 48px);
+  }
+
+  .instagram-feed-section__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  /* Header */
+  .instagram-feed-section__header {
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .instagram-feed-section__title {
+    margin: 0 0 8px;
+    font-size: clamp(1.25rem, 3vw, 1.875rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-foreground-heading, var(--color-foreground));
+  }
+
+  .instagram-feed-section__subtitle {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--color-foreground);
+    opacity: 0.75;
+    line-height: 1.5;
+  }
+
+  /* Wrapper (contains arrows + track) */
+  .instagram-feed-section__wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Track container clips overflow */
+  .instagram-feed-section__track-container {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  /* Track scrolls horizontally */
+  .instagram-feed-section__track {
+    display: grid;
+    grid-template-columns: repeat(var(--instagram-columns, 5), 1fr);
+    gap: var(--instagram-gap, 12px);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Each slide item */
+  .instagram-feed-section__item {
+    flex: 0 0 auto;
+  }
+
+  /* Image wrapper — square aspect ratio */
+  .instagram-feed-section__image-wrapper {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: var(--instagram-corner-radius, 8px);
+    background-color: var(--color-border);
+  }
+
+  .instagram-feed-section__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .instagram-feed-section__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .instagram-feed-section__link:hover .instagram-feed-section__image {
+    transform: scale(1.05);
+  }
+
+  /* Instagram icon overlay on hover */
+  .instagram-feed-section__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: var(--instagram-corner-radius, 8px);
+  }
+
+  .instagram-feed-section__link:hover .instagram-feed-section__overlay,
+  .instagram-feed-section__link:focus .instagram-feed-section__overlay {
+    opacity: 1;
+  }
+
+  /* Placeholder */
+  .instagram-feed-section__image-wrapper--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .instagram-feed-section__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Arrows */
+  .instagram-feed-section__arrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border, rgba(0,0,0,0.15));
+    background: var(--color-background, #fff);
+    color: var(--color-foreground);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+    z-index: 2;
+    position: absolute;
+  }
+
+  .instagram-feed-section__arrow--prev {
+    left: -20px;
+  }
+
+  .instagram-feed-section__arrow--next {
+    right: -20px;
+  }
+
+  .instagram-feed-section__arrow:hover {
+    background: var(--color-foreground);
+    color: var(--color-background, #fff);
+  }
+
+  .instagram-feed-section__arrow:disabled,
+  .instagram-feed-section__arrow[aria-disabled="true"] {
+    opacity: 0.35;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* CTA button */
+  .instagram-feed-section__cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  .instagram-feed-section__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid var(--color-foreground);
+    background: var(--color-foreground);
+    color: var(--color-background, #fff);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-radius: 0;
+  }
+
+  .instagram-feed-section__button:hover {
+    background: transparent;
+    color: var(--color-foreground);
+  }
+
+  /* Empty state */
+  .instagram-feed-section__empty {
+    text-align: center;
+    padding: 40px;
+    color: var(--color-foreground);
+    opacity: 0.6;
+  }
+
+  /* Mobile: 2 columns */
+  @media screen and (max-width: 749px) {
+    .instagram-feed-section__track {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .instagram-feed-section__arrow {
+      display: none;
+    }
+
+    .instagram-feed-section__inner {
+      gap: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    class InstagramFeedSlider {
+      constructor(section) {
+        this.section = section;
+        this.track = section.querySelector('.instagram-feed-section__track');
+        this.prevBtn = section.querySelector('.instagram-feed-section__arrow--prev');
+        this.nextBtn = section.querySelector('.instagram-feed-section__arrow--next');
+
+        if (!this.track) return;
+
+        this.currentIndex = 0;
+        this.items = Array.from(this.track.querySelectorAll('.instagram-feed-section__item'));
+        this.visibleCount = this.getVisibleCount();
+
+        this.bindEvents();
+        this.updateArrows();
+      }
+
+      getVisibleCount() {
+        const style = getComputedStyle(this.track);
+        const cols = style.getPropertyValue('grid-template-columns');
+        return cols.trim().split(' ').length;
+      }
+
+      bindEvents() {
+        if (this.prevBtn) {
+          this.prevBtn.addEventListener('click', () => this.slide(-1));
+        }
+        if (this.nextBtn) {
+          this.nextBtn.addEventListener('click', () => this.slide(1));
+        }
+
+        // Update visible count on resize
+        const ro = new ResizeObserver(() => {
+          this.visibleCount = this.getVisibleCount();
+          // Clamp index if needed
+          const maxIndex = Math.max(0, this.items.length - this.visibleCount);
+          if (this.currentIndex > maxIndex) {
+            this.currentIndex = maxIndex;
+            this.applyTranslate();
+          }
+          this.updateArrows();
+        });
+        ro.observe(this.track);
+      }
+
+      slide(direction) {
+        const maxIndex = Math.max(0, this.items.length - this.visibleCount);
+        this.currentIndex = Math.min(Math.max(this.currentIndex + direction, 0), maxIndex);
+        this.applyTranslate();
+        this.updateArrows();
+      }
+
+      applyTranslate() {
+        if (this.items.length === 0) return;
+        const gap = parseInt(getComputedStyle(this.track).getPropertyValue('--instagram-gap') || '12', 10);
+        const itemWidth = this.items[0].getBoundingClientRect().width;
+        const offset = this.currentIndex * (itemWidth + gap);
+        this.track.style.transform = `translateX(-${offset}px)`;
+      }
+
+      updateArrows() {
+        const maxIndex = Math.max(0, this.items.length - this.visibleCount);
+        if (this.prevBtn) {
+          this.prevBtn.disabled = this.currentIndex === 0;
+        }
+        if (this.nextBtn) {
+          this.nextBtn.disabled = this.currentIndex >= maxIndex;
+        }
+      }
+    }
+
+    document.querySelectorAll('[data-section-type="instagram-feed"]').forEach((section) => {
+      new InstagramFeedSlider(section);
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Instagram Feed",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Photo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text",
+          "info": "Describe the image for accessibility."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Custom link",
+          "info": "Optional. Overrides the Instagram URL for this photo."
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Follow us on Instagram"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Join our community for daily inspiration and a closer look at our creations"
+    },
+    {
+      "type": "header",
+      "content": "Instagram"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Visit Instagram"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between photos",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Color scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Feed",
+      "category": "Social media",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}
