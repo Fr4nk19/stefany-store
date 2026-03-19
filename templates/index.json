@@ -112,8 +112,8 @@
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "video",
-        "video_1": "shopify://files/videos/IMG_5124.MOV",
-        "media_type_2": "image",
+        "video_1": "shopify://files/videos/2026-03-14 19.40.04.mp4",
+        "media_type_2": "video",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
@@ -774,16 +774,16 @@
       "settings": {
         "title": "Siguenos en Instagram",
         "subtitle": "",
-        "access_token": "",
+        "access_token": "IGAAfEiQxA819BZAFkxRHNwMUlyZATJBenZAhUkhCeXpLcnJ3OUZA1MndwVlEwY3JYZAEFUT1I1YlRLM0ZAfTGNxWk84SDI5ZAG1LQndMUlpJSTZAjekVZAa1dHZAE1LRFZAPNExqaXQ0VkV3emFZAMjhfdnd5X1d2ek5wcGJ1UnliVXg3TldiUQZDZD",
         "instagram_url": "https://www.instagram.com/stefanymodasv",
-        "button_label": "Visitanos en Instagram",
-        "post_count": 6,
-        "columns": 5,
-        "gap": 12,
-        "corner_radius": 8,
+        "button_label": "Visítanos en Instagram",
+        "post_count": 8,
+        "columns": 4,
+        "gap": 2,
+        "corner_radius": 0,
         "show_arrows": true,
         "color_scheme": "scheme-1",
-        "padding_top": 48,
+        "padding_top": 16,
         "padding_bottom": 48
       }
     }

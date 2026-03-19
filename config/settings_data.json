@@ -83,7 +83,7 @@
             "type": "menu_item",
             "settings": {
               "title": "Mujer",
-              "url": "#",
+              "url": "shopify://collections/mujer",
               "menu_type": "megamenu_shop",
               "show_bottom_bar": false,
               "shop_all_url": ""
@@ -283,10 +283,11 @@
           "menu_item_69t8JJ"
         ],
         "settings": {
-          "logo_width": 36,
-          "transparent_header": true,
+          "logo": "shopify://shop_images/STEFANY_LOGO.png",
+          "logo_width": 180,
+          "transparent_header": false,
           "show_wishlist": false,
-          "show_announcement": false,
+          "show_announcement": true,
           "announcement_bg": "#030302",
           "announcement_text_color": "#ffffff"
         }
