@@ -21,6 +21,8 @@
 
   if product_resource == blank
     assign price = 1999
+  elsif price == blank and product_resource.price_min != blank
+    assign price = product_resource.price_min
   endif
 
   # Check if variant has volume pricing

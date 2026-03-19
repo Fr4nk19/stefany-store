@@ -53,6 +53,24 @@
     show_sale_price_first: block_settings.show_sale_price_first
   %}
 
+  {% unless product_resource == blank %}
+    <script type="application/json" data-variant-prices>
+      {
+        "moneyFormat": {{ shop.money_format | json }},
+        "showSalePriceFirst": {{ block_settings.show_sale_price_first | json }},
+        "variants": {
+          {% for variant in product_resource.variants %}
+            "{{ variant.id }}": {
+              "price": {{ variant.price | default: 0 }},
+              "compareAtPrice": {{ variant.compare_at_price | default: 'null' }},
+              "available": {{ variant.available | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        }
+      }
+    </script>
+  {% endunless %}
+
   {% if block_settings.show_tax_info %}
     <div class="tax-note">
       {%- if cart.duties_included and cart.taxes_included -%}
