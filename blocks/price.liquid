@@ -104,6 +104,19 @@
 
 {% # theme-check-disable %}
 {% stylesheet %}
+  product-price {
+    display: flex;
+    flex-direction: column;
+    width: var(--width, fit-content);
+    max-width: 100%;
+    align-items: var(--horizontal-alignment, flex-start);
+  }
+
+  product-price > * {
+    width: var(--width);
+    max-inline-size: min(100%, var(--max-width, 100%));
+  }
+
   .tax-note:empty {
     display: none;
   }
