@@ -138,7 +138,7 @@
                   "type": "group",
                   "name": "t:names.group",
                   "settings": {
-                    "content_direction": "row",
+                    "content_direction": "column",
                     "vertical_on_mobile": false,
                     "horizontal_alignment": "flex-start",
                     "vertical_alignment": "center",
@@ -179,9 +179,9 @@
                       "name": "t:names.product_price",
                       "settings": {
                         "show_sale_price_first": true,
-                        "show_installments": false,
-                        "show_tax_info": false,
-                        "type_preset": "h6",
+                        "show_installments": true,
+                        "show_tax_info": true,
+                        "type_preset": "h3",
                         "width": "fit-content",
                         "alignment": "left",
                         "font": "var(--font-body--family)",
@@ -189,8 +189,8 @@
                         "line_height": "normal",
                         "letter_spacing": "normal",
                         "case": "none",
-                        "color": "var(--color-foreground)",
-                        "padding-block-start": 0,
+                        "color": "var(--color-foreground-heading)",
+                        "padding-block-start": 11,
                         "padding-block-end": 0,
                         "padding-inline-start": 0,
                         "padding-inline-end": 0
