@@ -41,6 +41,10 @@
   data-block-id="{{ block.id }}"
   data-product-id="{{ product_resource.id }}"
   style="
+    display: flex;
+    flex-direction: column;
+    width: {{ block_settings.width }};
+    max-width: 100%;
     {% render 'typography-style', settings: block_settings %}
     {% render 'spacing-style', settings: block_settings %}
     --width: {{ block_settings.width }};
