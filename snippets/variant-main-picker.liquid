@@ -184,7 +184,7 @@
                       disabled
                     {% endif %}
                   >
-                    {% if product_option_value.available == false %}{{ product_option_value | escape }} - {{ 'products.product.sold_out' | t }}{% else %}{{ product_option_value | escape }}{% endif %}
+                    {% if product_option_value.available == false %}{{ product_option_value | escape }} - no disponible en esta cantidad{% else %}{{ product_option_value | escape }}{% endif %}
                   </option>
                 {%- endfor -%}
               </select>
