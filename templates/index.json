@@ -268,33 +268,6 @@
     "hero_rhMed7": {
       "type": "hero",
       "blocks": {
-        "text_aNfE4x": {
-          "type": "text",
-          "name": "t:names.text",
-          "disabled": true,
-          "settings": {
-            "text": "<h2><strong>EL VERANO ESTA AQUÍ</strong></h2>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h3",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
         "spacer_8HEw46": {
           "type": "spacer",
           "name": "t:names.spacer",
@@ -304,7 +277,7 @@
             "pixel_size": 384,
             "custom_mobile_size": true,
             "size_mobile": "percent",
-            "percent_size_mobile": 88,
+            "percent_size_mobile": 100,
             "pixel_size_mobile": 120
           },
           "blocks": {}
@@ -340,7 +313,6 @@
         }
       },
       "block_order": [
-        "text_aNfE4x",
         "spacer_8HEw46",
         "button_3cL8kq",
         "spacer_pMjnyg"
@@ -368,8 +340,8 @@
         "vertical_alignment_flex_direction_column": "space-between",
         "gap": 74,
         "section_width": "full-width",
-        "section_height": "large",
-        "section_height_custom": 61,
+        "section_height": "custom",
+        "section_height_custom": 75,
         "color_scheme": "scheme-6",
         "toggle_overlay": false,
         "overlay_color": "",
@@ -377,7 +349,7 @@
         "gradient_direction": "to top",
         "blurred_reflection": false,
         "reflection_opacity": 75,
-        "padding-block-start": 0,
+        "padding-block-start": 81,
         "padding-block-end": 15
       }
     },

@@ -9,11 +9,11 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/STEFANY_LOGO.png",
+    "logo": "shopify://shop_images/STEFANY_logo_negro.png",
     "logo_inverse": "shopify://shop_images/STEFANY_B.png",
-    "logo_height": 36,
+    "logo_height": 40,
     "logo_height_mobile": 28,
-    "favicon": "shopify://shop_images/STEFANY_-_LOGO.png",
+    "favicon": "shopify://shop_images/STEFANY_logo_negro.png",
     "type_body_font": "poppins_n4",
     "type_subheading_font": "poppins_n4",
     "type_heading_font": "poppins_n7",
@@ -83,10 +83,38 @@
       "stf-header": {
         "type": "stf-header",
         "blocks": {
+          "announcement_xWDL3P": {
+            "type": "announcement",
+            "settings": {
+              "text": "Envios a TODO el país",
+              "link": ""
+            }
+          },
+          "announcement_MdyL9r": {
+            "type": "announcement",
+            "settings": {
+              "text": "Colecciones nuevas cada semana",
+              "link": ""
+            }
+          },
+          "announcement_JBJWnA": {
+            "type": "announcement",
+            "settings": {
+              "text": "Visita nuestras sucursales",
+              "link": ""
+            }
+          },
+          "announcement_8ALebr": {
+            "type": "announcement",
+            "settings": {
+              "text": "La mejor caldad en Jeans",
+              "link": ""
+            }
+          },
           "menu_item_XfdM3K": {
             "type": "menu_item",
             "settings": {
-              "title": "Mujer",
+              "title": "MUJER",
               "url": "shopify://collections/mujer",
               "menu_type": "megamenu_shop",
               "show_bottom_bar": false,
@@ -103,14 +131,14 @@
           "menu_linklist_yVHGjD": {
             "type": "menu_linklist",
             "settings": {
-              "heading": "Categorías",
+              "heading": "CATEGORÍAS",
               "linklist": "categor-as"
             }
           },
           "menu_linklist_xdTRw3": {
             "type": "menu_linklist",
             "settings": {
-              "heading": "Colleciones",
+              "heading": "COLECCIONES",
               "linklist": "colecciones"
             }
           },
@@ -133,7 +161,7 @@
           "menu_item_XxccQJ": {
             "type": "menu_item",
             "settings": {
-              "title": "Hombre",
+              "title": "HOMBRE",
               "url": "#",
               "menu_type": "megamenu_shop",
               "show_bottom_bar": false,
@@ -150,14 +178,14 @@
           "menu_linklist_UT4ebk": {
             "type": "menu_linklist",
             "settings": {
-              "heading": "Categorías",
+              "heading": "CATEGORÍAS",
               "linklist": "categorias-hombre"
             }
           },
           "menu_linklist_ddRc6z": {
             "type": "menu_linklist",
             "settings": {
-              "heading": "Colecciones",
+              "heading": "COLECCIONES",
               "linklist": "colecciones-hombre"
             }
           },
@@ -180,7 +208,7 @@
           "menu_item_bxJ9dN": {
             "type": "menu_item",
             "settings": {
-              "title": "Nuestras Marcas",
+              "title": "NUESTRAS MARCAS",
               "url": "#",
               "menu_type": "megamenu_activities",
               "show_bottom_bar": false,
@@ -254,7 +282,7 @@
           "menu_item_69t8JJ": {
             "type": "menu_item",
             "settings": {
-              "title": "Sobre Nosotros",
+              "title": "SOBRE NOSOTROS",
               "url": "shopify://pages/emprende-con-stefany-moda",
               "menu_type": "link_only",
               "show_bottom_bar": false,
@@ -263,6 +291,10 @@
           }
         },
         "block_order": [
+          "announcement_xWDL3P",
+          "announcement_MdyL9r",
+          "announcement_JBJWnA",
+          "announcement_8ALebr",
           "menu_item_XfdM3K",
           "menu_linklist_LFUidr",
           "menu_linklist_yVHGjD",
@@ -287,12 +319,12 @@
           "menu_item_69t8JJ"
         ],
         "settings": {
-          "logo": "shopify://shop_images/STEFANY_LOGO.png",
+          "logo": "shopify://shop_images/STEFANY_logo_negro.png",
           "logo_width": 180,
           "transparent_header": false,
           "show_wishlist": false,
           "show_announcement": true,
-          "announcement_bg": "#030302",
+          "announcement_bg": "#000000",
           "announcement_text_color": "#ffffff"
         }
       }

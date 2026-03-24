@@ -15,6 +15,7 @@
         "text_tqQTNE": {
           "type": "text",
           "name": "Title",
+          "disabled": true,
           "settings": {
             "text": "<p>{{ collection.title }}</p>",
             "width": "fit-content",
