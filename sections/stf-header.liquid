@@ -94,7 +94,7 @@
   /* ============================================
      HEADER
   ============================================ */
-  {% if template.name == 'index' %}
+  {% if template.name == 'index' and section.settings.transparent_header %}
   #shopify-section-{{ section.id }} {
     position: fixed;
     top: 0;
@@ -103,10 +103,18 @@
   }
   {% else %}
   #shopify-section-{{ section.id }} {
-    position: sticky;
-    top: 0;
+    position: relative;
     width: 100%;
     z-index: 999;
+  }
+  #shopify-section-{{ section.id }}.stf-header-section--scrolled {
+    position: sticky;
+    top: 0;
+    animation: stfHeaderSlideDown 0.3s ease;
+  }
+  @keyframes stfHeaderSlideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
   }
   {% endif %}
 
