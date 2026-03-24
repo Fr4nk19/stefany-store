@@ -468,38 +468,13 @@
     display: contents;
   }
 
-  .header-section:has(> #header-component[sticky='always'][transparent]),
+  .header-section:has(> #header-component[sticky='always']),
   .header-section:has(> #header-component[sticky='scroll-up'][data-sticky-state='active']) {
     position: sticky;
 
     /* Use -1 instead of 0 so intersection observer can track sticky state */
     top: -1px;
     z-index: var(--layer-sticky);
-  }
-
-  /* Non-transparent always-sticky: relative by default, sticky after scrolling past */
-  .header-section:has(> #header-component[sticky='always']:not([transparent])) {
-    position: relative;
-    z-index: var(--layer-sticky);
-  }
-
-  .header-section:has(> #header-component[sticky='always']:not([transparent])[data-sticky-state='active']) {
-    position: sticky;
-    top: 0;
-  }
-
-  .header[sticky='always']:not([transparent])[data-sticky-state='active'] {
-    animation: headerSlideDown var(--animation-speed, 0.2s) var(--animation-easing, ease);
-  }
-
-  @keyframes headerSlideDown {
-    from {
-      transform: translateY(-100%);
-    }
-
-    to {
-      transform: translateY(0);
-    }
   }
 
   .header[data-sticky-state] {

@@ -143,35 +143,6 @@ class HeaderComponent extends Component {
 
   #updateScrollState = () => {
     const stickyMode = this.getAttribute('sticky');
-    const isTransparent = this.hasAttribute('transparent');
-
-    // Non-transparent always sticky: relative by default, sticky after scrolling past header
-    if (stickyMode === 'always' && !isTransparent) {
-      const scrollTop = document.scrollingElement?.scrollTop ?? 0;
-      const headerHeight = this.offsetHeight;
-
-      if (scrollTop > headerHeight) {
-        if (this.dataset.stickyState !== 'active') {
-          this.dataset.stickyState = 'active';
-          if (this.dataset.themeColor) changeMetaThemeColor(this.dataset.themeColor);
-        }
-      } else {
-        this.dataset.stickyState = 'inactive';
-      }
-
-      const isScrollingUp = scrollTop < this.#lastScrollTop;
-      if (scrollTop <= 0) {
-        this.dataset.scrollDirection = 'none';
-      } else if (isScrollingUp) {
-        this.dataset.scrollDirection = 'up';
-      } else {
-        this.dataset.scrollDirection = 'down';
-      }
-
-      this.#lastScrollTop = scrollTop;
-      return;
-    }
-
     if (!this.#offscreen && stickyMode !== 'always') return;
 
     const scrollTop = document.scrollingElement?.scrollTop ?? 0;
@@ -234,18 +205,10 @@ class HeaderComponent extends Component {
 
     const stickyMode = this.getAttribute('sticky');
     if (stickyMode) {
-      const isTransparent = this.hasAttribute('transparent');
+      this.#observeStickyPosition(stickyMode === 'always');
 
-      if (stickyMode === 'always' && !isTransparent) {
-        // Non-transparent: start relative, become sticky after scrolling past header
-        this.dataset.stickyState = 'inactive';
+      if (stickyMode === 'scroll-up' || stickyMode === 'always') {
         document.addEventListener('scroll', this.#handleWindowScroll);
-      } else {
-        this.#observeStickyPosition(stickyMode === 'always');
-
-        if (stickyMode === 'scroll-up' || stickyMode === 'always') {
-          document.addEventListener('scroll', this.#handleWindowScroll);
-        }
       }
     }
   }
