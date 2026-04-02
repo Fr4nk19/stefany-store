@@ -249,6 +249,25 @@
         "padding-block-end": 10
       }
     },
+    "collections_showcase": {
+      "type": "collections-showcase",
+      "settings": {
+        "heading": "Shop by Collection",
+        "subheading": "Find your perfect fit",
+        "card_height": 400,
+        "show_description": true,
+        "show_button": true,
+        "button_text": "SHOP NOW",
+        "overlay_opacity": 55,
+        "columns": 4,
+        "columns_gap": 12,
+        "show_arrows": true,
+        "section_width": "full-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 24,
+        "padding-block-end": 24
+      }
+    },
     "main-collection": {
       "type": "main-collection",
       "blocks": {
@@ -442,6 +461,7 @@
   "order": [
     "section",
     "collection_list_wa8A6H",
+    "collections_showcase",
     "main-collection"
   ]
 }
