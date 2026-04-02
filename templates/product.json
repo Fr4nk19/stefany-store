@@ -445,10 +445,10 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h3>Related items</h3>",
-            "width": "fit-content",
+            "text": "<h3><strong>Artículos recomendados</strong></h3>",
+            "width": "100%",
             "max_width": "normal",
-            "alignment": "left",
+            "alignment": "center",
             "type_preset": "h3",
             "font": "var(--font-primary--family)",
             "font_size": "",
@@ -619,7 +619,7 @@
       ],
       "name": "t:names.product_recommendations",
       "settings": {
-        "product": "{{ closest.product }}",
+        "product": "{{ product }}",
         "recommendation_type": "related",
         "layout_type": "carousel",
         "carousel_on_mobile": false,

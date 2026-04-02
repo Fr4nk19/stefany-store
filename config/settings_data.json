@@ -12,8 +12,8 @@
     "logo": "shopify://shop_images/STEFANY_logo_negro.png",
     "logo_inverse": "shopify://shop_images/STEFANY_B.png",
     "logo_height": 40,
-    "logo_height_mobile": 28,
-    "favicon": "shopify://shop_images/STEFANY_logo_negro.png",
+    "logo_height_mobile": 40,
+    "favicon": "shopify://shop_images/STEFANY_logo_negro_1.png",
     "type_body_font": "poppins_n4",
     "type_subheading_font": "poppins_n4",
     "type_heading_font": "poppins_n7",
@@ -94,7 +94,7 @@
             "type": "announcement",
             "settings": {
               "text": "Colecciones nuevas cada semana",
-              "link": ""
+              "link": "shopify://collections/new"
             }
           },
           "announcement_JBJWnA": {
@@ -107,8 +107,8 @@
           "announcement_8ALebr": {
             "type": "announcement",
             "settings": {
-              "text": "La mejor caldad en Jeans",
-              "link": ""
+              "text": "La MEJOR calidad en Jeans",
+              "link": "shopify://collections/stefany-jeans"
             }
           },
           "menu_item_XfdM3K": {
@@ -145,24 +145,24 @@
           "promo_image_AXMHxc": {
             "type": "promo_image",
             "settings": {
-              "image": "shopify://shop_images/TST-_N_6.jpg",
-              "label": "New Releases",
-              "url": ""
+              "image": "shopify://shop_images/JCMD-25-6010_6.jpg",
+              "label": "JEANS",
+              "url": "shopify://collections/stefany-jeans"
             }
           },
           "promo_image_ABCwpY": {
             "type": "promo_image",
             "settings": {
-              "image": "shopify://shop_images/L-2025_2_1.jpg",
-              "label": "New Releases",
-              "url": ""
+              "image": "shopify://shop_images/ENC-220_2.jpg",
+              "label": "BLUSAS",
+              "url": "shopify://collections/blusas"
             }
           },
           "menu_item_XxccQJ": {
             "type": "menu_item",
             "settings": {
               "title": "HOMBRE",
-              "url": "#",
+              "url": "shopify://collections/hombre",
               "menu_type": "megamenu_shop",
               "show_bottom_bar": false,
               "shop_all_url": ""
@@ -192,7 +192,7 @@
           "promo_image_WPPhWj": {
             "type": "promo_image",
             "settings": {
-              "image": "shopify://shop_images/city-man-texting.jpg",
+              "image": "shopify://shop_images/BST-W-BROWN_2.jpg",
               "label": "New Releases",
               "url": ""
             }
@@ -200,7 +200,7 @@
           "promo_image_K66Uhq": {
             "type": "promo_image",
             "settings": {
-              "image": "shopify://shop_images/mens-fashion-close-up-shirt-tucked-in-leaning.jpg",
+              "image": "shopify://shop_images/CCJ-_IMP5990XM_STF_2.jpg",
               "label": "New Releases",
               "url": ""
             }
@@ -209,7 +209,7 @@
             "type": "menu_item",
             "settings": {
               "title": "NUESTRAS MARCAS",
-              "url": "#",
+              "url": "shopify://pages/nuestras-marcas",
               "menu_type": "megamenu_activities",
               "show_bottom_bar": false,
               "shop_all_url": ""
@@ -217,54 +217,56 @@
           },
           "activity_card_wVXjBW": {
             "type": "activity_card",
+            "name": "Brand Card",
             "settings": {
-              "title": "Stefany",
-              "image": "shopify://shop_images/U1-4935_1.jpg",
-              "url": "shopify://collections/todos"
+              "title": "STEFANY",
+              "image": "shopify://shop_images/STEFANY.png",
+              "url": "shopify://collections/stefany"
             }
           },
           "activity_card_jpjAJ4": {
             "type": "activity_card",
             "settings": {
-              "title": "STEFANY JEANS",
-              "image": "shopify://shop_images/JMCD-25-6011_2.jpg",
-              "url": "shopify://collections/stefany-jeans"
+              "title": "STEFANY Jeans",
+              "image": "shopify://shop_images/STEFANY_Jeans.png",
+              "url": "shopify://collections/stefany-jeans-1"
             }
           },
           "activity_card_U9Ymgz": {
             "type": "activity_card",
             "settings": {
-              "title": "STF Los Angeles",
-              "image": "shopify://shop_images/WC-404.jpg",
-              "url": "shopify://collections/stefany-jeans"
+              "title": "STF Los Ángeles",
+              "image": "shopify://shop_images/STF_Los_Angeles.png",
+              "url": "shopify://collections/stf-los-angeles"
             }
           },
           "activity_card_zFRVFD": {
             "type": "activity_card",
             "settings": {
-              "title": "STEFANY New York",
-              "image": "shopify://shop_images/L-2084_3.jpg",
-              "url": "shopify://collections/stefany-jeans"
+              "title": "bebe",
+              "image": "shopify://shop_images/bebe.png",
+              "url": "shopify://collections/bebe"
             }
           },
           "activity_card_JVtNrm": {
             "type": "activity_card",
             "settings": {
-              "title": "STF Denim",
-              "image": "shopify://shop_images/STU-904_e1e3eab1-8bdb-45bb-9610-45e41c622dfb.jpg",
-              "url": ""
+              "title": "STEFANY basic",
+              "image": "shopify://shop_images/STEFANY_basic.png",
+              "url": "shopify://collections/stefany-basic"
             }
           },
           "activity_card_WPcnYh": {
             "type": "activity_card",
             "settings": {
               "title": "Horse Club",
-              "image": "shopify://shop_images/RIB-CH001.jpg",
-              "url": ""
+              "image": "shopify://shop_images/Horse_Club.png",
+              "url": "shopify://collections/horse-club"
             }
           },
           "activity_card_4d6pta": {
             "type": "activity_card",
+            "disabled": true,
             "settings": {
               "title": "Bebe",
               "image": "shopify://shop_images/SL-2504_4.jpg",
@@ -273,6 +275,7 @@
           },
           "activity_card_mxrHBH": {
             "type": "activity_card",
+            "disabled": true,
             "settings": {
               "title": "Stravaganzza",
               "image": "shopify://shop_images/6665527F-A069-4A57-B019-4AC1B566FBF1.jpg",
@@ -319,7 +322,7 @@
           "menu_item_69t8JJ"
         ],
         "settings": {
-          "logo": "shopify://shop_images/STEFANY_logo_negro.png",
+          "logo": "shopify://shop_images/STEFANY_logo_negro_1.png",
           "logo_width": 180,
           "transparent_header": false,
           "show_wishlist": false,
