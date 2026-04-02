@@ -254,6 +254,14 @@
       "settings": {
         "heading": "Shop by Collection",
         "subheading": "Find your perfect fit",
+        "collection_list": [
+          "camisetas",
+          "conjuntos",
+          "horse-club",
+          "stefany-jeans",
+          "marca-bebe",
+          "mujer"
+        ],
         "card_height": 400,
         "show_description": true,
         "show_button": true,
