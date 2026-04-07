@@ -7,11 +7,20 @@
 <script>
 (function() {
   function notifyOwnerOfSubscription(email, source) {
+    var discountEl = document.querySelector('[data-discount-code]');
+    var discountCode = discountEl ? discountEl.textContent.trim() : '';
+
+    var body = 'Nueva suscripci\u00f3n al newsletter desde: ' + source +
+      '\nEmail del suscriptor: ' + email;
+    if (discountCode) {
+      body += '\nC\u00f3digo de descuento enviado: ' + discountCode;
+    }
+
     var formData = new FormData();
     formData.append('form_type', 'contact');
     formData.append('utf8', '\u2713');
     formData.append('contact[email]', email);
-    formData.append('contact[body]', 'Nueva suscripci\u00f3n al newsletter desde: ' + source + '\nEmail del suscriptor: ' + email);
+    formData.append('contact[body]', body);
 
     fetch('/contact#contact_form', {
       method: 'POST',

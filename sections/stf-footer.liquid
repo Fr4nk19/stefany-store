@@ -152,6 +152,12 @@
             <p class="stf-footer__form-message stf-footer__form-message--success">
               {{ section.settings.newsletter_success | default: '¡Gracias por suscribirte!' }}
             </p>
+            {%- if section.settings.newsletter_discount_code != blank -%}
+              <div class="stf-footer__discount">
+                <span class="stf-footer__discount-label">{{ section.settings.newsletter_discount_label | default: 'Tu código de descuento:' }}</span>
+                <span class="stf-footer__discount-code" data-discount-code>{{ section.settings.newsletter_discount_code }}</span>
+              </div>
+            {%- endif -%}
           {%- endif -%}
           {%- if form.errors -%}
             <p class="stf-footer__form-message stf-footer__form-message--error">
@@ -554,6 +560,32 @@
     margin: 16px 0 0;
     opacity: 0.65;
   }
+
+  /* ── Discount code ── */
+  .stf-footer__discount {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .stf-footer__discount-label {
+    font-size: 0.8rem;
+    color: var(--stf-footer-text-color, #ccc);
+  }
+
+  .stf-footer__discount-code {
+    display: inline-block;
+    padding: 4px 14px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: 1px dashed var(--stf-footer-text-color, #ccc);
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: all;
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -712,6 +744,18 @@
       "id": "newsletter_success",
       "label": "Mensaje de éxito (solo email)",
       "default": "¡Gracias por suscribirte!"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_discount_code",
+      "label": "Código de descuento newsletter",
+      "info": "Debe coincidir con un descuento creado en Shopify Admin > Descuentos"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_discount_label",
+      "label": "Texto antes del código",
+      "default": "Tu código de descuento:"
     },
     {
       "type": "header",
