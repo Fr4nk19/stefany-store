@@ -1,0 +1,39 @@
+{%- comment -%}
+  Newsletter Owner Notification
+  Sends an email to the store owner when someone subscribes to the newsletter.
+  Works by submitting a secondary contact form to Shopify's /contact endpoint.
+{%- endcomment -%}
+
+<script>
+(function() {
+  function notifyOwnerOfSubscription(email, source) {
+    var formData = new FormData();
+    formData.append('form_type', 'contact');
+    formData.append('utf8', '\u2713');
+    formData.append('contact[email]', email);
+    formData.append('contact[body]', 'Nueva suscripci\u00f3n al newsletter desde: ' + source + '\nEmail del suscriptor: ' + email);
+
+    fetch('/contact#contact_form', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+  }
+
+  // Intercept all newsletter customer forms
+  document.addEventListener('submit', function(e) {
+    var form = e.target;
+
+    // Check if this is a newsletter customer form
+    if (form.getAttribute('action') && form.querySelector('input[name="contact[tags]"][value*="newsletter"]')) {
+      var emailInput = form.querySelector('input[name="contact[email]"]');
+      if (emailInput && emailInput.value) {
+        var source = form.closest('.newsletter-popup') ? 'Popup' : 'Footer';
+        notifyOwnerOfSubscription(emailInput.value, source);
+      }
+    }
+  });
+})();
+</script>
