@@ -91,7 +91,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "VER MÁS",
-            "link": "shopify://collections/stefany-jeans",
+            "link": "shopify://collections/jeans",
             "open_in_new_tab": false,
             "style_class": "link",
             "width": "custom",
@@ -118,7 +118,7 @@
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
-        "link": "shopify://collections/stefany-jeans",
+        "link": "shopify://collections/jeans",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -292,7 +292,7 @@
         "collection_list": [
           "blusas",
           "tops",
-          "stefany-jeans",
+          "jeans",
           "camisetas",
           "conjuntos",
           "vestidos",
@@ -535,7 +535,7 @@
       },
       "name": "Featured collection",
       "settings": {
-        "collection": "stefany-jeans",
+        "collection": "jeans",
         "layout_type": "carousel",
         "carousel_on_mobile": false,
         "max_products": 16,

@@ -142,6 +142,13 @@
               "linklist": "colecciones"
             }
           },
+          "menu_linklist_eFxefR": {
+            "type": "menu_linklist",
+            "settings": {
+              "heading": "Jeans",
+              "linklist": "jeans-mujer"
+            }
+          },
           "promo_image_AXMHxc": {
             "type": "promo_image",
             "settings": {
@@ -172,7 +179,7 @@
             "type": "menu_linklist",
             "settings": {
               "heading": "",
-              "linklist": "principal"
+              "linklist": "principal-hombre"
             }
           },
           "menu_linklist_UT4ebk": {
@@ -302,6 +309,7 @@
           "menu_linklist_LFUidr",
           "menu_linklist_yVHGjD",
           "menu_linklist_xdTRw3",
+          "menu_linklist_eFxefR",
           "promo_image_AXMHxc",
           "promo_image_ABCwpY",
           "menu_item_XxccQJ",

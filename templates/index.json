@@ -222,7 +222,7 @@
               "type": "button",
               "settings": {
                 "label": "Comprar ahora",
-                "link": "shopify://collections/stefany-jeans",
+                "link": "shopify://collections/jeans",
                 "open_in_new_tab": false,
                 "style_class": "button",
                 "width": "fit-content",
@@ -1126,7 +1126,7 @@
         "collection_list": [
           "blusas",
           "camisetas",
-          "stefany-jeans",
+          "jeans",
           "basicas",
           "tops",
           "vestidos"
@@ -1237,7 +1237,7 @@
       "settings": {
         "collection_list": [
           "blusas",
-          "stefany-jeans",
+          "jeans",
           "basicas",
           "camisetas",
           "tops",
@@ -1482,7 +1482,7 @@
       },
       "name": "Featured collection",
       "settings": {
-        "collection": "stefany-jeans",
+        "collection": "jeans",
         "layout_type": "carousel",
         "carousel_on_mobile": false,
         "max_products": 16,
@@ -1774,7 +1774,7 @@
         "phone_placeholder": "Número de celular",
         "submit_text": "SUSCRIBIRSE",
         "button_color": "#000000",
-        "button_text_color": "#FFFFFF",
+        "button_text_color": "#ffffff",
         "dismiss_text": "En otro momento",
         "success_message": "¡Gracias por suscribirte! Revisa tu correo para tu código de descuento."
       }
