@@ -41,10 +41,10 @@
             <a href="{{ collection.url }}" class="collections-showcase__card-link">
               <div class="collections-showcase__card-image">
                 {% if collection.image != blank %}
-                  {{ collection.image | image_url: width: 800 | image_tag:
+                  {{ collection.image | image_url: width: 1000 | image_tag:
                     loading: 'lazy',
                     class: 'collections-showcase__img',
-                    widths: '400,600,800',
+                    widths: '300,600,800',
                     sizes: '(min-width: 750px) calc(100vw / var(--cs-columns)), 80vw'
                   }}
                 {% else %}
@@ -199,7 +199,7 @@
   }
 
   .collections-showcase__card {
-    flex: 0 0 calc((100% - (var(--cs-columns, 4) - 1) * var(--cs-gap, 12px)) / var(--cs-columns, 4));
+    flex: 0 0 calc((100% - (var(--cs-columns, 5) - 1) * var(--cs-gap, 12px)) / var(--cs-columns, 5));
     min-width: 220px;
     scroll-snap-align: start;
     position: relative;

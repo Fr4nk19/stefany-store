@@ -37,19 +37,46 @@
             "padding-inline-end": 0
           },
           "blocks": {}
+        },
+        "text_YGPmaX": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Encuentra tu fit perfecto</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "text_tqQTNE"
+        "text_tqQTNE",
+        "text_YGPmaX"
       ],
       "name": "Collection heading",
       "settings": {
         "content_direction": "column",
-        "vertical_on_mobile": false,
+        "vertical_on_mobile": true,
         "horizontal_alignment": "space-between",
         "vertical_alignment": "flex-end",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 0,
         "section_width": "page-width",
@@ -58,6 +85,7 @@
         "color_scheme": "scheme-1",
         "background_media": "none",
         "video_position": "cover",
+        "background_image": "{{ collection.image }}",
         "background_image_position": "cover",
         "border": "none",
         "border_width": 1,
@@ -67,8 +95,8 @@
         "overlay_color": "#d3cec5",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 30,
-        "padding-block-end": 30
+        "padding-block-start": 20,
+        "padding-block-end": 20
       }
     },
     "collection_list_wa8A6H": {
@@ -249,30 +277,30 @@
     },
     "collections_showcase": {
       "type": "collections-showcase",
-      "disabled": true,
       "settings": {
-        "heading": "Shop by Collection",
-        "subheading": "Find your perfect fit",
+        "heading": "",
+        "subheading": "",
         "collection_list": [
-          "camisetas",
-          "conjuntos",
-          "horse-club",
-          "jeans",
-          "marca-bebe",
-          "mujer"
+          "cropped-flare-jeans",
+          "flare-jeans",
+          "wide-leg-jeans",
+          "skinny-jeans",
+          "straight-jeans",
+          "cargo-jeans",
+          "cropped-straight-jeans"
         ],
-        "card_height": 400,
-        "show_description": true,
-        "show_button": true,
+        "card_height": 460,
+        "show_description": false,
+        "show_button": false,
         "button_text": "SHOP NOW",
-        "overlay_opacity": 55,
-        "columns": 4,
-        "columns_gap": 12,
+        "overlay_opacity": 30,
+        "columns": 6,
+        "columns_gap": 4,
         "show_arrows": true,
-        "section_width": "full-width",
+        "section_width": "page-width",
         "color_scheme": "scheme-1",
-        "padding-block-start": 24,
-        "padding-block-end": 24
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "main-collection": {
