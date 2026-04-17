@@ -21,8 +21,17 @@
     size-style
     {{ block_settings.style_class }}
     {{ block_settings.style_class }}--{{ block.id }}
+    {% if block_settings.custom_colors %}button--custom-colors{% endif %}
   "
-  style="{% render 'size-style', settings: block_settings %}"
+  style="
+    {% render 'size-style', settings: block_settings %}
+    {% if block_settings.custom_colors %}
+      --button-custom-bg: {{ block_settings.button_bg_color }};
+      --button-custom-color: {{ block_settings.button_text_color }};
+      --button-custom-hover-bg: {{ block_settings.button_hover_bg_color }};
+      --button-custom-hover-color: {{ block_settings.button_hover_text_color }};
+    {% endif %}
+  "
   {%- if block_settings.open_in_new_tab -%}
     target="_blank"
     rel="noopener noreferrer"
@@ -41,5 +50,16 @@
       color: var(--color-primary-hover);
       text-decoration-color: transparent;
     }
+  }
+
+  .button--custom-colors {
+    background-color: var(--button-custom-bg) !important;
+    color: var(--button-custom-color) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .button--custom-colors:hover {
+    background-color: var(--button-custom-hover-bg) !important;
+    color: var(--button-custom-hover-color) !important;
   }
 {% endstylesheet %}
