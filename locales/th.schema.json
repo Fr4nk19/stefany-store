@@ -227,6 +227,7 @@
     "image": "รูปภาพ",
     "image_icon": "ไอคอนรูปภาพ",
     "image_opacity": "ความทึบของรูปภาพ",
+    "image_object_position": "จุดโฟกัสของรูปภาพ",
     "image_position": "ตำแหน่งรูปภาพ",
     "image_ratio": "อัตราส่วนรูปภาพ",
     "label": "ป้ายกำกับ",

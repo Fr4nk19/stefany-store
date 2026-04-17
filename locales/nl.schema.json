@@ -238,6 +238,7 @@
     "geometric_translate_y": "Geometrische translatie Y",
     "image": "Afbeelding",
     "image_opacity": "Afbeeldingsdekking",
+    "image_object_position": "Focuspunt afbeelding",
     "image_position": "Positie afbeelding",
     "image_ratio": "Beeldverhouding",
     "label": "Label",

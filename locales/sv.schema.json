@@ -227,6 +227,7 @@
     "image": "Bild",
     "image_icon": "Bildikon",
     "image_opacity": "Bildopacitet",
+    "image_object_position": "Bildens fokuspunkt",
     "image_position": "Bildposition",
     "image_ratio": "Bildförhållande",
     "label": "Etikett",

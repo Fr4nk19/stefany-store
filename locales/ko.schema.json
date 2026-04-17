@@ -238,6 +238,7 @@
     "geometric_translate_y": "기하학적 변환 Y",
     "image": "이미지",
     "image_opacity": "이미지 불투명도",
+    "image_object_position": "이미지 초점",
     "image_position": "이미지 위치",
     "image_ratio": "이미지 비율",
     "label": "레이블",

@@ -238,6 +238,7 @@
     "geometric_translate_y": "Przesunięcie geometryczne Y",
     "image": "Obraz",
     "image_opacity": "Krycie obrazu",
+    "image_object_position": "Punkt ogniskowy obrazu",
     "image_position": "Pozycja obrazu",
     "image_ratio": "Współczynnik proporcji obrazu",
     "label": "Etykieta",

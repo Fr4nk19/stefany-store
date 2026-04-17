@@ -238,6 +238,7 @@
     "geometric_translate_y": "Geometrik çeviri Y",
     "image": "Görsel",
     "image_opacity": "Görsel opaklığı",
+    "image_object_position": "Görsel odak noktası",
     "image_position": "Görsel konumu",
     "image_ratio": "Görsel oranı",
     "label": "Etiket",
