@@ -80,6 +80,51 @@
     },
     {
       "type": "select",
+      "id": "image_object_position",
+      "label": "t:settings.image_object_position",
+      "options": [
+        {
+          "value": "center center",
+          "label": "t:options.center"
+        },
+        {
+          "value": "top center",
+          "label": "t:options.top"
+        },
+        {
+          "value": "bottom center",
+          "label": "t:options.bottom"
+        },
+        {
+          "value": "center left",
+          "label": "t:options.left"
+        },
+        {
+          "value": "center right",
+          "label": "t:options.right"
+        },
+        {
+          "value": "top left",
+          "label": "t:options.top_left"
+        },
+        {
+          "value": "top right",
+          "label": "t:options.top_right"
+        },
+        {
+          "value": "bottom left",
+          "label": "t:options.bottom_left"
+        },
+        {
+          "value": "bottom right",
+          "label": "t:options.bottom_right"
+        }
+      ],
+      "default": "center center",
+      "visible_if": "{{ block.settings.media_type == 'image' && block.settings.image_position == 'cover' }}"
+    },
+    {
+      "type": "select",
       "id": "video_position",
       "label": "t:settings.video_position",
       "options": [

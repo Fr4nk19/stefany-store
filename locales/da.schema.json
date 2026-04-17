@@ -227,6 +227,7 @@
     "image": "Billede",
     "image_icon": "Billedikon",
     "image_opacity": "Billedets opacitet",
+    "image_object_position": "Billedets fokuspunkt",
     "image_position": "Billedposition",
     "image_ratio": "Billedformat",
     "label": "Label",

@@ -227,6 +227,7 @@
     "image": "Kuva",
     "image_icon": "Kuvake (kuva)",
     "image_opacity": "Kuvan peittävyys",
+    "image_object_position": "Kuvan tarkennuspiste",
     "image_position": "Kuvan sijainti",
     "image_ratio": "Kuvan suhde",
     "label": "Merkintä",

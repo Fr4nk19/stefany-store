@@ -238,6 +238,7 @@
     "geometric_translate_y": "Geometrische Y-Verschiebung",
     "image": "Bild",
     "image_opacity": "Bilddeckkraft",
+    "image_object_position": "Bild-Fokuspunkt",
     "image_position": "Bildposition",
     "image_ratio": "Bildseitenverhältnis",
     "label": "Etikett",

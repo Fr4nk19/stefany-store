@@ -227,6 +227,7 @@
     "image": "圖片",
     "image_icon": "圖片圖示",
     "image_opacity": "圖片不透明度",
+    "image_object_position": "圖片焦點",
     "image_position": "圖片位置",
     "image_ratio": "圖片長寬比",
     "label": "標籤",

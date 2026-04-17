@@ -910,6 +910,7 @@
     // Image picker setting to upload custom image as icon
     "image_icon": "Image icon",
     "image_opacity": "Image opacity",
+    "image_object_position": "Image focal point",
     "image_position": "Image position",
     "image_ratio": "Image ratio",
     "inherit_color_scheme": "Inherit color scheme",

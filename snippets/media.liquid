@@ -33,6 +33,7 @@
     {% render 'border-override', settings: block_settings %}
     {% render 'spacing-style', settings: block_settings %}
     --image-position: {{ block_settings.image_position }};
+    --image-object-position: {{ block_settings.image_object_position | default: 'center center' }};
     --video-position: {{ block_settings.video_position }};
   "
   {{ block.shopify_attributes }}
@@ -90,7 +91,7 @@
   .media-block__media {
     height: var(--media-height-mobile, auto);
     object-fit: var(--image-position, 'cover');
-    object-position: center center;
+    object-position: var(--image-object-position, center center);
     width: 100%;
 
     @media screen and (min-width: 750px) {
