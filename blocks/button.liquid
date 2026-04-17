@@ -45,6 +45,44 @@
     },
     {
       "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_colors",
+      "label": "Use custom colors",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Background color",
+      "default": "#000000",
+      "visible_if": "{{ block.settings.custom_colors }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.custom_colors }}"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Hover background color",
+      "default": "#333333",
+      "visible_if": "{{ block.settings.custom_colors }}"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff",
+      "visible_if": "{{ block.settings.custom_colors }}"
+    },
+    {
+      "type": "header",
       "content": "t:content.size"
     },
     {
