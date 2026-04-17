@@ -1,0 +1,176 @@
+{% if section.settings.button_bg_color != blank or section.settings.button_hover_bg_color != blank %}
+  <style>
+    .collection-card .text-block--background {
+      {% if section.settings.button_bg_color != blank %}
+        --text-background-color: {{ section.settings.button_bg_color }};
+      {% endif %}
+      {% if section.settings.button_text_color != blank %}
+        color: {{ section.settings.button_text_color }};
+      {% endif %}
+      {% if section.settings.button_font != 'inherit' %}
+        font-family: {{ section.settings.button_font }};
+      {% endif %}
+      {% if section.settings.button_text_transform != 'none' %}
+        text-transform: {{ section.settings.button_text_transform }};
+      {% endif %}
+      {% if section.settings.button_font_weight != 'normal' %}
+        font-weight: {{ section.settings.button_font_weight }};
+      {% endif %}
+      border-radius: {{ section.settings.button_border_radius }}px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    {% if section.settings.button_text_color != blank %}
+      .collection-card .text-block--background,
+      .collection-card .text-block--background * {
+        color: {{ section.settings.button_text_color }};
+      }
+    {% endif %}
+
+    {% if section.settings.button_hover_bg_color != blank or section.settings.button_hover_text_color != blank %}
+      .collection-card:hover .text-block--background {
+        {% if section.settings.button_hover_bg_color != blank %}
+          --text-background-color: {{ section.settings.button_hover_bg_color }};
+          background-color: {{ section.settings.button_hover_bg_color }};
+        {% endif %}
+      }
+
+      {% if section.settings.button_hover_text_color != blank %}
+        .collection-card:hover .text-block--background,
+        .collection-card:hover .text-block--background * {
+          color: {{ section.settings.button_hover_text_color }};
+        }
+      {% endif %}
+    {% endif %}
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Brands Button Styles",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button Colors"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Hover Colors"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Hover background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Text Style"
+    },
+    {
+      "type": "select",
+      "id": "button_font",
+      "label": "Font family",
+      "options": [
+        {
+          "value": "inherit",
+          "label": "Default"
+        },
+        {
+          "value": "var(--font-body--family)",
+          "label": "Body"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "Heading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "Accent"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "Subheading"
+        }
+      ],
+      "default": "inherit"
+    },
+    {
+      "type": "select",
+      "id": "button_text_transform",
+      "label": "Text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "UPPERCASE"
+        },
+        {
+          "value": "lowercase",
+          "label": "lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

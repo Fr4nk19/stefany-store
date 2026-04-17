@@ -9,6 +9,19 @@
  */
 {
   "sections": {
+    "brands_button_styles": {
+      "type": "brands-button-styles",
+      "settings": {
+        "button_bg_color": "#ffffff",
+        "button_text_color": "#000000",
+        "button_hover_bg_color": "#000000",
+        "button_hover_text_color": "#ffffff",
+        "button_font": "inherit",
+        "button_text_transform": "uppercase",
+        "button_font_weight": "normal",
+        "button_border_radius": 0
+      }
+    },
     "main": {
       "type": "main-page",
       "blocks": {
@@ -141,6 +154,7 @@
     }
   },
   "order": [
+    "brands_button_styles",
     "main",
     "collection_list_brands"
   ]
