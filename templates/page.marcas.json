@@ -64,10 +64,10 @@
           "name": "t:names.collection_card",
           "static": true,
           "settings": {
-            "placement": "below_image",
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "collection_card_gap": 8,
+            "placement": "on_image",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "flex-end",
+            "collection_card_gap": 13,
             "inherit_color_scheme": true,
             "color_scheme": "",
             "border": "none",
@@ -76,6 +76,26 @@
             "border_radius": 0
           },
           "blocks": {
+            "button_iypqkg": {
+              "type": "button",
+              "name": "t:names.button",
+              "settings": {
+                "label": "{{ closest.collection.title }}",
+                "link": "{{ closest.collection.url }}",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "custom_colors": true,
+                "button_bg_color": "#000000",
+                "button_text_color": "#ffffff",
+                "button_hover_bg_color": "#333333",
+                "button_hover_text_color": "#ffffff",
+                "width": "fit-content",
+                "custom_width": 53,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            },
             "collection-card-image": {
               "type": "_collection-card-image",
               "name": "t:names.collection_card_image",
@@ -94,7 +114,9 @@
               "blocks": {}
             }
           },
-          "block_order": []
+          "block_order": [
+            "button_iypqkg"
+          ]
         }
       },
       "name": "t:names.collections_editorial",
@@ -110,7 +132,7 @@
           "stravaganzza",
           "stf-denim"
         ],
-        "layout_type": "bento",
+        "layout_type": "grid",
         "carousel_on_mobile": false,
         "columns": 3,
         "mobile_columns": "2",
@@ -124,7 +146,7 @@
         "section_width": "page-width",
         "gap": 0,
         "color_scheme": "",
-        "padding-block-start": 0,
+        "padding-block-start": 24,
         "padding-block-end": 48
       }
     }
