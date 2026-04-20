@@ -219,7 +219,7 @@
               "url": "shopify://pages/nuestras-marcas",
               "menu_type": "megamenu_activities",
               "show_bottom_bar": false,
-              "shop_all_url": ""
+              "shop_all_url": "shopify://pages/nuestras-marcas-1"
             }
           },
           "activity_card_wVXjBW": {
@@ -293,7 +293,7 @@
             "type": "menu_item",
             "settings": {
               "title": "SOBRE NOSOTROS",
-              "url": "shopify://pages/emprende-con-stefany-moda",
+              "url": "shopify://pages/sobre-nosotros",
               "menu_type": "link_only",
               "show_bottom_bar": false,
               "shop_all_url": ""
