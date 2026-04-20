@@ -199,8 +199,8 @@
   }
 
   .collections-showcase__card {
-    flex: 0 0 50vw;
-    min-width: 215px;
+    flex: 0 0 calc((100% - (var(--cs-columns, 5) - 1) * var(--cs-gap, 12px)) / var(--cs-columns, 5));
+    min-width: 220px;
     scroll-snap-align: start;
     position: relative;
     border-radius: var(--cs-border-radius, 0px);
@@ -349,8 +349,8 @@
   /* Mobile */
   @media screen and (max-width: 749px) {
     .collections-showcase__card {
-      flex: 0 0 75vw;
-      min-width: 260px;
+      flex: 0 0 50vw;
+      min-width: 215px;
     }
 
     .collections-showcase__title {
