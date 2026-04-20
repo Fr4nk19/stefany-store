@@ -127,6 +127,7 @@
         {%- comment -%} Email newsletter form using Shopify customer subscribe {%- endcomment -%}
         {%- form 'customer', class: 'stf-footer__form' -%}
           <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="hidden" name="contact[accepts_marketing]" value="true">
           <div class="stf-footer__input-wrap">
             <label for="StfFooterEmail-{{ section.id }}" class="visually-hidden">
               {{ section.settings.newsletter_placeholder | default: 'Tu correo electrónico' }}

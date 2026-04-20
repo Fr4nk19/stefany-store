@@ -73,6 +73,7 @@
 
           {%- form 'customer', id: 'NewsletterPopupForm', class: 'newsletter-popup__form' -%}
             <input type="hidden" name="contact[tags]" value="newsletter,popup">
+            <input type="hidden" name="contact[accepts_marketing]" value="true">
 
             {%- if form.errors -%}
               <div class="newsletter-popup__errors">
