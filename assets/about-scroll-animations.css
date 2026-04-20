@@ -51,3 +51,9 @@
   .scroll-reveal--delay-2 { transition-delay: 0.2s; }
   .scroll-reveal--delay-3 { transition-delay: 0.3s; }
 }
+
+@media screen and (max-width: 749px) {
+  [id$="__our_values"] .group-block-content.layout-panel-flex--row > .group-block {
+    flex: 0 0 calc(50% - 4px);
+  }
+}
