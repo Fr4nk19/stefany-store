@@ -79,6 +79,7 @@
             "button_iypqkg": {
               "type": "button",
               "name": "t:names.button",
+              "disabled": true,
               "settings": {
                 "label": "{{ closest.collection.title }}",
                 "link": "{{ closest.collection.url }}",
@@ -130,16 +131,20 @@
           "stefany-los-angeles",
           "horse-club",
           "stravaganzza",
-          "stf-denim"
+          "stf-denim",
+          "blusas",
+          "basicas",
+          "camisetas",
+          "cargo-jeans"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": false,
-        "columns": 3,
+        "columns": 4,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
-        "columns_gap": 8,
+        "columns_gap": 24,
         "bento_gap": 0,
-        "rows_gap": 8,
+        "rows_gap": 24,
         "max_collections": 4,
         "icons_style": "arrow",
         "icons_shape": "none",

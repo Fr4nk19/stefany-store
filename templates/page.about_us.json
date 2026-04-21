@@ -25,11 +25,11 @@
         "text_label": {
           "type": "text",
           "settings": {
-            "text": "<p>GET TO KNOW US</p>",
+            "text": "<p>CONÓCENOS</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
-            "type_preset": "h6",
+            "type_preset": "h3",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
             "line_height": "normal",
@@ -50,7 +50,7 @@
         "text_heading": {
           "type": "text",
           "settings": {
-            "text": "<h1>WHO<br>WE ARE</h1>",
+            "text": "<h1><strong>QUIÉNES SOMOS</strong></h1>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -61,7 +61,7 @@
             "letter_spacing": "-0.02em",
             "case": "uppercase",
             "wrap": "pretty",
-            "color": "",
+            "color": "var(--color-foreground-heading)",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -79,7 +79,7 @@
       ],
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/01_ZONE_1_ABOUT_US_PAGE_HERO_BANNER_desktop_2000x_880bc0d1-adb4-4c70-86fc-5758cc68d3e7.webp",
+        "image_1": "shopify://shop_images/BANNER_SOBRE_NOSOTROS.png",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -115,7 +115,7 @@
         "text_intro": {
           "type": "text",
           "settings": {
-            "text": "<p>We're an activewear brand created by women, for women. Women who lift weights, women who take up space — physically, mentally, unapologetically. Because we believe every woman deserves to feel strong in her mind, body and spirit — and look amazing in the process!</p>",
+            "text": "<p></p><p>STEFANY nació en El Salvador con el propósito de transformar la manera en que la moda conecta con quienes la venden y la usan. Lo que comenzó como una operación enfocada en distribución evolucionó hacia algo mucho más grande: el desarrollo de colecciones con identidad propia, diseñadas estratégicamente para generar valor real en cada punto de venta.</p>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "center",
@@ -200,7 +200,7 @@
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<h2>OUR MISSION</h2>",
+                "text": "<h2><strong>NUESTRA MISIÓN</strong></h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -225,7 +225,7 @@
             "text": {
               "type": "text",
               "settings": {
-                "text": "<p>We were created with the mission to drive every woman. We believe reaching your goals isn't about doing just one thing well — it's about inspiring movement and support to build a stronger, more resilient body and mind. Our mission is to empower every woman to feel strong, confident and supported to whatever they choose with the grace and resilience.</p>",
+                "text": "<p>Desarrollar y ofrecer moda con propósito comercial, diseñada estratégicamente para impulsar el crecimiento de nuestros clientes.</p><p>En Stefany creamos colecciones que combinan calidad, tendencia y rotación, entendiendo el comportamiento del consumidor y las necesidades reales del mercado. Nuestro compromiso es ser un aliado confiable para tiendas y emprendedores, brindando productos que generen valor sostenido en cada negocio.</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -296,7 +296,7 @@
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<h2>OUR VISION</h2>",
+                "text": "<h2><strong>NUESTRA VISIÓN</strong></h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "right",
@@ -321,7 +321,7 @@
             "text": {
               "type": "text",
               "settings": {
-                "text": "<p>We envision a world where every woman feels empowered to fly in feeling who she truly becomes, to support women to move with confidence, lift each other up, and drive their full potential.</p>",
+                "text": "<p>Convertirnos en la marca referente de moda mayorista en Centroamérica, reconocida por su capacidad de transformar producto en resultados.</p><p>Aspiramos a liderar la industria a través de innovación, cercanía con el cliente y una propuesta de valor basada en calidad, estrategia y crecimiento conjunto.</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "right",
@@ -493,7 +493,7 @@
         "founder_label": {
           "type": "text",
           "settings": {
-            "text": "<h2>OUR FOUNDER STORY</h2>",
+            "text": "<h2><strong>NUESTRA EVOLUCIÓN</strong></h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
@@ -517,8 +517,9 @@
         },
         "founder_quote": {
           "type": "text",
+          "disabled": true,
           "settings": {
-            "text": "<h3>\"I WANT TO HELP AS MANY WOMEN<br>AS POSSIBLE SEE THE BENEFITS<br>OF MOVING THEIR BODIES.\"</h3>",
+            "text": "",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "center",
@@ -543,7 +544,7 @@
         "founder_text": {
           "type": "text",
           "settings": {
-            "text": "<p>Kirsty Cale founded Oner Active in 2020 after she became a personal trainer and struggled to find flattering activewear that combined inspiring clients with performance capabilities. She began by collaborating her own leggings and creating her own designs, before quickly realising there was a gap in the market for products made by women, for women who still want to look good being still.</p>",
+            "text": "<p>Stefany nació en 2004 en El Salvador como una operación enfocada en la distribución de moda, desarrollando un profundo entendimiento del mercado y de las necesidades de las tiendas.</p><p>Con el tiempo, evolucionamos hacia la creación de colecciones propias, diseñadas estratégicamente para generar valor, rotación y diferenciación en cada punto de venta.</p><p>Hoy, somos una marca que combina experiencia, producto y visión comercial para acompañar el crecimiento de nuestros clientes.</p>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "center",
@@ -708,7 +709,7 @@
         "quote_text": {
           "type": "text",
           "settings": {
-            "text": "<h2>\"ONER ACTIVE ISN'T JUST AN ACTIVEWEAR<br>BRAND; IT'S A MOVEMENT THAT PROMISES TO<br>INSPIRE AND UPLIFT GENERATIONS TO COME.\"</h2>",
+            "text": "<h2>\"<strong>STEFANY no solo es ropa, es un aliado en cada etapa de tu crecimiento.</strong>\"</h2>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
@@ -768,7 +769,7 @@
         "values_heading": {
           "type": "text",
           "settings": {
-            "text": "<h2><strong>OUR VALUES</strong></h2>",
+            "text": "<h2><strong>NUESTROS VALORES</strong></h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -887,7 +888,7 @@
                 "label_purpose": {
                   "type": "text",
                   "settings": {
-                    "text": "<p><strong>PURPOSE</strong></p>",
+                    "text": "<p><strong>CALIDAD</strong></p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -972,7 +973,7 @@
                 "label_accountability": {
                   "type": "text",
                   "settings": {
-                    "text": "<p><strong>ACCOUNTABILITY</strong></p>",
+                    "text": "<p><strong>CERCANÍA</strong></p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1057,7 +1058,7 @@
                 "label_consistency": {
                   "type": "text",
                   "settings": {
-                    "text": "<p><strong>CONSISTENCY</strong></p>",
+                    "text": "<p><strong>EVOLUCIÓN</strong></p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1142,7 +1143,7 @@
                 "label_community": {
                   "type": "text",
                   "settings": {
-                    "text": "<p><strong>COMMUNITY</strong></p>",
+                    "text": "<p><strong>COMPROMISO</strong></p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",

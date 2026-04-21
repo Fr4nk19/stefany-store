@@ -118,6 +118,7 @@
               "url": "shopify://collections/mujer",
               "menu_type": "megamenu_shop",
               "show_bottom_bar": false,
+              "shop_all_label": "SHOP ALL",
               "shop_all_url": ""
             }
           },
@@ -172,6 +173,7 @@
               "url": "shopify://collections/hombre",
               "menu_type": "megamenu_shop",
               "show_bottom_bar": false,
+              "shop_all_label": "SHOP ALL",
               "shop_all_url": ""
             }
           },
@@ -216,9 +218,10 @@
             "type": "menu_item",
             "settings": {
               "title": "NUESTRAS MARCAS",
-              "url": "shopify://pages/nuestras-marcas",
+              "url": "shopify://pages/nuestras-marcas-1",
               "menu_type": "megamenu_activities",
               "show_bottom_bar": false,
+              "shop_all_label": "TODAS NUESTRAS MARCAS",
               "shop_all_url": "shopify://pages/nuestras-marcas-1"
             }
           },
@@ -296,7 +299,16 @@
               "url": "shopify://pages/sobre-nosotros",
               "menu_type": "link_only",
               "show_bottom_bar": false,
+              "shop_all_label": "SHOP ALL",
               "shop_all_url": ""
+            }
+          },
+          "activity_card_nnxHRf": {
+            "type": "activity_card",
+            "settings": {
+              "title": "SUCURSALES",
+              "image": "shopify://shop_images/U1-5255_4.jpg",
+              "url": "#"
             }
           }
         },
@@ -327,7 +339,8 @@
           "activity_card_WPcnYh",
           "activity_card_4d6pta",
           "activity_card_mxrHBH",
-          "menu_item_69t8JJ"
+          "menu_item_69t8JJ",
+          "activity_card_nnxHRf"
         ],
         "settings": {
           "logo": "shopify://shop_images/Mask_group.png",
