@@ -275,8 +275,8 @@
         "padding-block-end": 0
       }
     },
-    "hero_rhMed7": {
-      "type": "hero",
+    "hero_slider_rhMed7": {
+      "type": "hero-slider",
       "blocks": {
         "spacer_8HEw46": {
           "type": "spacer",
@@ -332,20 +332,17 @@
         "button_3cL8kq",
         "spacer_pMjnyg"
       ],
-      "name": "t:names.hero",
+      "name": "Hero Slider",
       "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/2_59002a89-9acd-474d-adef-263764d755b1.png",
-        "video_1": "shopify://files/videos/2026-03-14 19.40.04.mp4",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": true,
-        "media_type_1_mobile": "image",
-        "image_1_mobile": "shopify://shop_images/pagina_inicio_cel.png",
-        "video_1_mobile": "shopify://files/videos/nueva.mp4",
-        "media_type_2_mobile": "image",
-        "link": "shopify://collections/basicas",
-        "open_in_new_tab": false,
+        "slides_count": 1,
+        "slide_1_image_desktop": "shopify://shop_images/2_59002a89-9acd-474d-adef-263764d755b1.png",
+        "slide_1_image_mobile": "shopify://shop_images/pagina_inicio_cel.png",
+        "slide_1_link": "shopify://collections/basicas",
+        "slide_1_open_in_new_tab": false,
+        "slider_autoplay": true,
+        "slider_speed": 5,
+        "slider_show_dots": true,
+        "slider_show_arrows": true,
         "content_direction": "column",
         "vertical_on_mobile": false,
         "horizontal_alignment": "flex-start",
@@ -362,8 +359,6 @@
         "overlay_color": "",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
         "padding-block-start": 81,
         "padding-block-end": 15
       }
@@ -1814,7 +1809,7 @@
   },
   "order": [
     "slideshow_r7kCU8",
-    "hero_rhMed7",
+    "hero_slider_rhMed7",
     "product_list_J8QzNA",
     "product_list_T8kV9X",
     "collection_list_RndBJ6",
