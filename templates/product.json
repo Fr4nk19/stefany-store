@@ -416,12 +416,37 @@
                 "accordion_row_XMFatY",
                 "accordion_row_kmdwc8"
               ]
+            },
+            "whatsapp_button_stf": {
+              "type": "whatsapp-button",
+              "settings": {
+                "whatsapp_phone": "",
+                "button_label": "Asesoría personalizada",
+                "whatsapp_message": "Hola, me gustaría recibir asesoría sobre este producto.",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
+            },
+            "product_tabs_stf": {
+              "type": "product-tabs",
+              "settings": {
+                "tab_surtido_label": "Surtido",
+                "tab_envio_label": "Envío",
+                "tab_devolucion_label": "Devolución",
+                "fallback_surtido": "<p>Información de surtido no disponible.</p>",
+                "fallback_envio": "<p>Todos los pedidos se procesan en un plazo de 24 a 48 horas y se envían mediante nuestro servicio de mensajería confiable. La entrega se realiza en un plazo de 3 a 5 días hábiles, dependiendo de la ubicación del destinatario.</p>",
+                "fallback_devolucion": "<p>Aceptamos devoluciones dentro de los 30 días posteriores a la compra. El producto debe estar en su estado original con todas las etiquetas puestas.</p>",
+                "padding-block-start": 8,
+                "padding-block-end": 0
+              }
             }
           },
           "block_order": [
             "group_8fkkWP",
             "variant_picker_3Nha6V",
             "buy_buttons_NmYpFG",
+            "whatsapp_button_stf",
+            "product_tabs_stf",
             "accordion_iWQwkW"
           ]
         }

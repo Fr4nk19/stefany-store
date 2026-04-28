@@ -1,0 +1,273 @@
+{% liquid
+  assign block_settings = block.settings
+  assign product = closest.product
+
+  assign tab_surtido_label = block_settings.tab_surtido_label | default: 'Surtido'
+  assign tab_envio_label = block_settings.tab_envio_label | default: 'Envío'
+  assign tab_devolucion_label = block_settings.tab_devolucion_label | default: 'Devolución'
+
+  assign content_surtido = product.metafields.custom.surtido.value
+  assign content_envio = product.metafields.custom.envio.value
+  assign content_devolucion = product.metafields.custom.devolucion.value
+%}
+
+<div
+  class="product-tabs product-tabs--{{ block.id }} spacing-style"
+  style="{% render 'spacing-style', settings: block_settings %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="product-tabs__nav" role="tablist">
+    <button
+      class="product-tabs__tab product-tabs__tab--active"
+      role="tab"
+      aria-selected="true"
+      aria-controls="product-tab-surtido-{{ block.id }}"
+      data-tab="surtido"
+      type="button"
+    >
+      {{ tab_surtido_label }}
+    </button>
+    <button
+      class="product-tabs__tab"
+      role="tab"
+      aria-selected="false"
+      aria-controls="product-tab-envio-{{ block.id }}"
+      data-tab="envio"
+      type="button"
+    >
+      {{ tab_envio_label }}
+    </button>
+    <button
+      class="product-tabs__tab"
+      role="tab"
+      aria-selected="false"
+      aria-controls="product-tab-devolucion-{{ block.id }}"
+      data-tab="devolucion"
+      type="button"
+    >
+      {{ tab_devolucion_label }}
+    </button>
+  </div>
+
+  <div class="product-tabs__panels">
+    <div
+      id="product-tab-surtido-{{ block.id }}"
+      class="product-tabs__panel product-tabs__panel--active"
+      role="tabpanel"
+    >
+      {%- if content_surtido != blank -%}
+        <div class="product-tabs__content rte">{{ content_surtido }}</div>
+      {%- else -%}
+        <div class="product-tabs__content product-tabs__content--empty rte">
+          {{ block_settings.fallback_surtido }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div
+      id="product-tab-envio-{{ block.id }}"
+      class="product-tabs__panel"
+      role="tabpanel"
+      hidden
+    >
+      {%- if content_envio != blank -%}
+        <div class="product-tabs__content rte">{{ content_envio }}</div>
+      {%- else -%}
+        <div class="product-tabs__content product-tabs__content--empty rte">
+          {{ block_settings.fallback_envio }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div
+      id="product-tab-devolucion-{{ block.id }}"
+      class="product-tabs__panel"
+      role="tabpanel"
+      hidden
+    >
+      {%- if content_devolucion != blank -%}
+        <div class="product-tabs__content rte">{{ content_devolucion }}</div>
+      {%- else -%}
+        <div class="product-tabs__content product-tabs__content--empty rte">
+          {{ block_settings.fallback_devolucion }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var container = document.querySelector('.product-tabs--{{ block.id }}');
+    if (!container) return;
+
+    var tabs = container.querySelectorAll('.product-tabs__tab');
+    var panels = container.querySelectorAll('.product-tabs__panel');
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = this.getAttribute('aria-controls');
+
+        tabs.forEach(function (t) {
+          t.classList.remove('product-tabs__tab--active');
+          t.setAttribute('aria-selected', 'false');
+        });
+
+        panels.forEach(function (p) {
+          p.classList.remove('product-tabs__panel--active');
+          p.hidden = true;
+        });
+
+        this.classList.add('product-tabs__tab--active');
+        this.setAttribute('aria-selected', 'true');
+
+        var panel = container.querySelector('#' + target);
+        if (panel) {
+          panel.classList.add('product-tabs__panel--active');
+          panel.hidden = false;
+        }
+      });
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .product-tabs {
+    width: 100%;
+  }
+
+  .product-tabs__nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .product-tabs__tab {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-family: var(--font-body--family);
+    font-size: var(--font-paragraph--size);
+    font-weight: var(--font-weight-medium, 500);
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+    padding: var(--padding-sm) var(--padding-lg) var(--padding-sm) 0;
+    margin-bottom: -1px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .product-tabs__tab:hover {
+    color: var(--color-foreground);
+  }
+
+  .product-tabs__tab--active {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-foreground);
+  }
+
+  .product-tabs__panels {
+    padding-top: var(--padding-md);
+  }
+
+  .product-tabs__panel {
+    display: block;
+  }
+
+  .product-tabs__panel[hidden] {
+    display: none;
+  }
+
+  .product-tabs__content {
+    font-size: var(--font-paragraph--size);
+    line-height: var(--font-paragraph--line-height);
+    color: var(--color-foreground);
+  }
+
+  .product-tabs__content--empty {
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tabs de producto",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Etiquetas de pestañas"
+    },
+    {
+      "type": "text",
+      "id": "tab_surtido_label",
+      "label": "Etiqueta pestaña Surtido",
+      "default": "Surtido"
+    },
+    {
+      "type": "text",
+      "id": "tab_envio_label",
+      "label": "Etiqueta pestaña Envío",
+      "default": "Envío"
+    },
+    {
+      "type": "text",
+      "id": "tab_devolucion_label",
+      "label": "Etiqueta pestaña Devolución",
+      "default": "Devolución"
+    },
+    {
+      "type": "header",
+      "content": "Contenido por defecto (si no hay metafield)"
+    },
+    {
+      "type": "richtext",
+      "id": "fallback_surtido",
+      "label": "Texto por defecto - Surtido",
+      "default": "<p>Información de surtido no disponible.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "fallback_envio",
+      "label": "Texto por defecto - Envío",
+      "default": "<p>Todos los pedidos se procesan en un plazo de 24 a 48 horas y se envían mediante nuestro servicio de mensajería confiable. La entrega se realiza en un plazo de 3 a 5 días hábiles, dependiendo de la ubicación del destinatario.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "fallback_devolucion",
+      "label": "Texto por defecto - Devolución",
+      "default": "<p>Aceptamos devoluciones dentro de los 30 días posteriores a la compra. El producto debe estar en su estado original con todas las etiquetas puestas.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Margen superior",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Margen inferior",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tabs de producto",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
