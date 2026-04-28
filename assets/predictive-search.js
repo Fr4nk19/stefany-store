@@ -12,6 +12,12 @@ import { DialogCloseEvent, DialogOpenEvent, DialogComponent } from '@theme/dialo
  * @property {HTMLInputElement} searchInput - The search input element.
  * @property {HTMLElement} predictiveSearchResults - The predictive search results container.
  * @property {HTMLElement} resetButton - The reset button element.
+ * @property {HTMLElement} [searchPreviewPanel] - The product preview panel.
+ * @property {HTMLImageElement} [searchPreviewImage] - The preview product image.
+ * @property {HTMLElement} [searchPreviewTitle] - The preview product title.
+ * @property {HTMLElement} [searchPreviewPrice] - The preview product price.
+ * @property {HTMLElement} [searchPreviewDescription] - The preview product description.
+ * @property {HTMLAnchorElement} [searchPreviewLink] - The preview product link.
  * @property {HTMLElement[]} [resultsItems] - The search results items elements.
  * @property {HTMLElement} [recentlyViewedWrapper] - The recently viewed products wrapper.
  * @property {HTMLElement[]} [recentlyViewedTitle] - The recently viewed title elements.
@@ -56,6 +62,9 @@ class PredictiveSearchComponent extends Component {
       this.addEventListener('click', this.#handleModalClick, { signal });
     }
 
+    // Wire hover on the results container for the preview panel
+    this.refs.predictiveSearchResults.addEventListener('mouseover', this.#handleProductHover, { signal });
+
     if (RecentlyViewed.getProducts().length > 0) {
       requestIdleCallback(() => {
         this.#loadEmptyState();
@@ -79,6 +88,17 @@ class PredictiveSearchComponent extends Component {
 
     if (!isInteractiveElement && this.refs.searchInput) {
       this.refs.searchInput.focus();
+    }
+  };
+
+  /**
+   * Handles mouseover events on product result rows to update the preview panel.
+   * @param {MouseEvent} event - The mouse event.
+   */
+  #handleProductHover = (event) => {
+    const productCard = /** @type {HTMLElement} */ (event.target)?.closest('[data-preview-title]');
+    if (productCard instanceof HTMLElement) {
+      this.#showProductPreview(productCard.dataset);
     }
   };
 
@@ -161,6 +181,10 @@ class PredictiveSearchComponent extends Component {
         item.setAttribute('aria-selected', 'true');
         if (this.#isKeyboardNavigation) {
           item.classList.add('keyboard-focus');
+          // Update preview panel on keyboard navigation if item has product data
+          if (item.dataset.previewTitle) {
+            this.#showProductPreview(item.dataset);
+          }
         }
         activeItem = item;
       } else {
@@ -331,6 +355,7 @@ class PredictiveSearchComponent extends Component {
         morph(predictiveSearchResults, resultsMarkup);
 
         this.#resetScrollPositions();
+        this.#updatePreviewToFirstProduct();
       })
       .catch((error) => {
         if (abortController.signal.aborted) return;
@@ -376,6 +401,48 @@ class PredictiveSearchComponent extends Component {
     return abortController;
   }
 
+  /**
+   * Show the product preview panel with data from the given product card dataset.
+   * @param {DOMStringMap} data - Dataset from a product list item.
+   */
+  #showProductPreview(data) {
+    const { searchPreviewPanel, searchPreviewImage, searchPreviewTitle, searchPreviewPrice, searchPreviewDescription, searchPreviewLink } = this.refs;
+    if (!searchPreviewPanel) return;
+
+    if (searchPreviewImage) {
+      searchPreviewImage.src = data.previewImage || '';
+      searchPreviewImage.alt = data.previewTitle || '';
+    }
+    if (searchPreviewTitle) searchPreviewTitle.textContent = data.previewTitle || '';
+    if (searchPreviewPrice) searchPreviewPrice.textContent = data.previewPrice || '';
+    if (searchPreviewDescription) searchPreviewDescription.textContent = data.previewDescription || '';
+    if (searchPreviewLink) searchPreviewLink.href = data.previewUrl || '#';
+
+    searchPreviewPanel.removeAttribute('hidden');
+  }
+
+  /**
+   * Hide the product preview panel.
+   */
+  #hideProductPreview() {
+    const { searchPreviewPanel } = this.refs;
+    if (searchPreviewPanel) {
+      searchPreviewPanel.setAttribute('hidden', '');
+    }
+  }
+
+  /**
+   * After results load, show the first product in the preview panel.
+   */
+  #updatePreviewToFirstProduct() {
+    const firstProduct = this.refs.predictiveSearchResults?.querySelector('[data-preview-title]');
+    if (firstProduct instanceof HTMLElement && firstProduct.dataset.previewTitle) {
+      this.#showProductPreview(firstProduct.dataset);
+    } else {
+      this.#hideProductPreview();
+    }
+  }
+
   #resetSearch = async () => {
     const { predictiveSearchResults, searchInput } = this.refs;
     const emptySectionId = 'predictive-search-empty';
@@ -383,6 +450,7 @@ class PredictiveSearchComponent extends Component {
     this.#currentIndex = -1;
     searchInput.value = '';
     this.#hideResetButton();
+    this.#hideProductPreview();
 
     const abortController = this.#createAbortController();
     const url = new URL(window.location.href);

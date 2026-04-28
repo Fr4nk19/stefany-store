@@ -51,32 +51,72 @@
           {% for _id in order_ids %}
             {% assign int_id = _id | times: 1 %}
             {% assign product = products | find: 'id', int_id %}
+            {%- liquid
+              assign product_image = product.featured_media.preview_image | default: product.featured_image
+              assign product_image_preview_url = product_image | image_url: width: 600 | default: ''
+              assign product_description = product.description | strip_html | truncate: 200
+            -%}
             <li
               class="predictive-search-results__card predictive-search-results__card--product"
               ref="recentlyViewedItems[]"
+              data-preview-image="{{ product_image_preview_url }}"
+              data-preview-title="{{ product.title | escape }}"
+              data-preview-price="{{ product.price | money }}"
+              data-preview-description="{{ product_description | escape }}"
+              data-preview-url="{{ product.url }}"
             >
-              {% render 'resource-card',
-                resource_type: 'product',
-                resource: product,
-                image_width: 500,
-                image_hover: true,
-                image_aspect_ratio: '4 / 5'
-              %}
+              <a href="{{ product.url }}" class="search-product-row">
+                <span class="search-product-row__image">
+                  {%- if product_image != blank -%}
+                    {{
+                      product_image
+                      | image_url: width: 100
+                      | image_tag:
+                        loading: 'lazy',
+                        alt: product.title,
+                        class: 'search-product-row__img',
+                        width: 40,
+                        height: 40
+                    }}
+                  {%- endif -%}
+                </span>
+                <span class="search-product-row__title">{{ product.title }}</span>
+              </a>
             </li>
           {% endfor %}
         {% else %}
           {% for product in products limit: limit %}
+            {%- liquid
+              assign product_image = product.featured_media.preview_image | default: product.featured_image
+              assign product_image_preview_url = product_image | image_url: width: 600 | default: ''
+              assign product_description = product.description | strip_html | truncate: 200
+            -%}
             <li
               class="predictive-search-results__card predictive-search-results__card--product"
               ref="recentlyViewedItems[]"
+              data-preview-image="{{ product_image_preview_url }}"
+              data-preview-title="{{ product.title | escape }}"
+              data-preview-price="{{ product.price | money }}"
+              data-preview-description="{{ product_description | escape }}"
+              data-preview-url="{{ product.url }}"
             >
-              {% render 'resource-card',
-                resource_type: 'product',
-                resource: product,
-                image_width: 500,
-                image_hover: true,
-                image_aspect_ratio: '4 / 5'
-              %}
+              <a href="{{ product.url }}" class="search-product-row">
+                <span class="search-product-row__image">
+                  {%- if product_image != blank -%}
+                    {{
+                      product_image
+                      | image_url: width: 100
+                      | image_tag:
+                        loading: 'lazy',
+                        alt: product.title,
+                        class: 'search-product-row__img',
+                        width: 40,
+                        height: 40
+                    }}
+                  {%- endif -%}
+                </span>
+                <span class="search-product-row__title">{{ product.title }}</span>
+              </a>
             </li>
           {% endfor %}
         {% endif %}
@@ -95,17 +135,37 @@
         assign limit = limit | default: 8
       %}
       {% for product in products limit: limit %}
+        {%- liquid
+          assign product_image = product.featured_media.preview_image | default: product.featured_image
+          assign product_image_preview_url = product_image | image_url: width: 600 | default: ''
+          assign product_description = product.description | strip_html | truncate: 200
+        -%}
         <li
           class="predictive-search-results__card predictive-search-results__card--product"
           ref="resultsItems[]"
+          data-preview-image="{{ product_image_preview_url }}"
+          data-preview-title="{{ product.title | escape }}"
+          data-preview-price="{{ product.price | money }}"
+          data-preview-description="{{ product_description | escape }}"
+          data-preview-url="{{ product.url }}"
         >
-          {% render 'resource-card',
-            resource_type: 'product',
-            resource: product,
-            image_width: 500,
-            image_hover: true,
-            image_aspect_ratio: '4 / 5'
-          %}
+          <a href="{{ product.url }}" class="search-product-row">
+            <span class="search-product-row__image">
+              {%- if product_image != blank -%}
+                {{
+                  product_image
+                  | image_url: width: 100
+                  | image_tag:
+                    loading: 'lazy',
+                    alt: product.title,
+                    class: 'search-product-row__img',
+                    width: 40,
+                    height: 40
+                }}
+              {%- endif -%}
+            </span>
+            <span class="search-product-row__title">{{ product.title }}</span>
+          </a>
         </li>
       {% endfor %}
     </ul>
@@ -114,7 +174,7 @@
 
 {% stylesheet %}
   .predictive-search-results__products {
-    padding-inline: var(--padding-xl);
+    padding-inline: 0;
   }
 
   .recently-viewed-wrapper {
@@ -181,5 +241,67 @@
 
   .predictive-search-results__wrapper-products {
     animation-delay: 50ms;
+  }
+
+  /* Product autocomplete row */
+  .predictive-search-results__card--product {
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    outline: none !important;
+  }
+
+  .predictive-search-results__card--product:is([aria-selected='true'].keyboard-focus) {
+    background-color: transparent !important;
+    outline: none !important;
+  }
+
+  .search-product-row {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+    padding: var(--padding-xs) var(--padding-xl);
+    text-decoration: none;
+    color: var(--color-foreground);
+    transition: background-color var(--animation-speed-medium) var(--animation-timing-hover);
+  }
+
+  .search-product-row:hover,
+  .predictive-search-results__card--product:is([aria-selected='true'].keyboard-focus) .search-product-row {
+    background-color: rgb(var(--color-foreground-rgb) / var(--opacity-5));
+  }
+
+  .search-product-row__image {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: calc(var(--product-corner-radius) / 2);
+    overflow: hidden;
+    background-color: var(--color-input-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-product-row__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .search-product-row__title {
+    font-size: var(--font-size--sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Title with section padding */
+  .predictive-search-results__products .predictive-search-results__title {
+    padding-inline: var(--padding-xl);
   }
 {% endstylesheet %}
