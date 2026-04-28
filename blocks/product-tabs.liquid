@@ -5,10 +5,6 @@
   assign tab_surtido_label = block_settings.tab_surtido_label | default: 'Surtido'
   assign tab_envio_label = block_settings.tab_envio_label | default: 'Envío'
   assign tab_devolucion_label = block_settings.tab_devolucion_label | default: 'Devolución'
-
-  assign content_surtido = product.metafields.custom.surtido.value
-  assign content_envio = product.metafields.custom.envio.value
-  assign content_devolucion = product.metafields.custom.devolucion.value
 %}
 
 <div
@@ -55,8 +51,8 @@
       class="product-tabs__panel product-tabs__panel--active"
       role="tabpanel"
     >
-      {%- if content_surtido != blank -%}
-        <div class="product-tabs__content rte">{{ content_surtido }}</div>
+      {%- if product.metafields.custom.surtido != blank -%}
+        <div class="product-tabs__content rte">{{ product.metafields.custom.surtido | metafield_tag }}</div>
       {%- else -%}
         <div class="product-tabs__content product-tabs__content--empty rte">
           {{ block_settings.fallback_surtido }}
@@ -70,8 +66,8 @@
       role="tabpanel"
       hidden
     >
-      {%- if content_envio != blank -%}
-        <div class="product-tabs__content rte">{{ content_envio }}</div>
+      {%- if product.metafields.custom.envio != blank -%}
+        <div class="product-tabs__content rte">{{ product.metafields.custom.envio | metafield_tag }}</div>
       {%- else -%}
         <div class="product-tabs__content product-tabs__content--empty rte">
           {{ block_settings.fallback_envio }}
@@ -85,8 +81,8 @@
       role="tabpanel"
       hidden
     >
-      {%- if content_devolucion != blank -%}
-        <div class="product-tabs__content rte">{{ content_devolucion }}</div>
+      {%- if product.metafields.custom.devolucion != blank -%}
+        <div class="product-tabs__content rte">{{ product.metafields.custom.devolucion | metafield_tag }}</div>
       {%- else -%}
         <div class="product-tabs__content product-tabs__content--empty rte">
           {{ block_settings.fallback_devolucion }}
