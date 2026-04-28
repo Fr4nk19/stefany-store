@@ -103,17 +103,49 @@
         </div>
 
         <div class="predictive-search-form__content-wrapper">
-          <div
-            class="predictive-search-form__content"
-            tabindex="-1"
-            ref="predictiveSearchResults"
-            on:click="/handleModalClick"
-          >
-            {% render 'predictive-search-empty-state',
-              load_empty_state: true,
-              shadow_opacity: 0.1,
-              products_test_id: 'products-list-default--modal'
-            %}
+          <div class="predictive-search-form__body">
+            <div
+              class="predictive-search-form__content"
+              tabindex="-1"
+              ref="predictiveSearchResults"
+              on:click="/handleModalClick"
+            >
+              {% render 'predictive-search-empty-state',
+                load_empty_state: true,
+                shadow_opacity: 0.1,
+                products_test_id: 'products-list-default--modal'
+              %}
+            </div>
+
+            <div
+              class="search-preview-panel"
+              ref="searchPreviewPanel"
+              hidden
+              aria-live="polite"
+              aria-label="{{ 'content.search_input_label' | t }}"
+            >
+              <div class="search-preview-panel__media">
+                <img
+                  class="search-preview-panel__image"
+                  ref="searchPreviewImage"
+                  src=""
+                  alt=""
+                  loading="lazy"
+                >
+              </div>
+              <div class="search-preview-panel__info">
+                <p class="search-preview-panel__title" ref="searchPreviewTitle"></p>
+                <p class="search-preview-panel__price" ref="searchPreviewPrice"></p>
+                <p class="search-preview-panel__description" ref="searchPreviewDescription"></p>
+                <a
+                  class="search-preview-panel__link"
+                  ref="searchPreviewLink"
+                  href="#"
+                >
+                  {{ 'content.search_results_view_all' | t: default: 'See details' }}
+                </a>
+              </div>
+            </div>
           </div>
 
           <div class="predictive-search-form__footer">
@@ -156,6 +188,11 @@
       margin-block-start: var(--modal-top-margin);
       overflow: hidden;
     }
+  }
+
+  /* Wider modal when preview panel is visible */
+  .search-modal__content:has(.search-preview-panel:not([hidden])) {
+    --modal-width: min(80dvw, 860px);
   }
 
   /* Hide the default dialog backdrop on small screens */
@@ -262,7 +299,16 @@
     align-self: flex-start;
   }
 
+  /* Two-column body: results list + preview panel */
+  .predictive-search-form__body {
+    display: flex;
+    flex-direction: row;
+    min-height: 0;
+  }
+
   .predictive-search-form__content {
+    flex: 1;
+    min-width: 0;
     max-height: 50dvh;
     overflow-y: auto;
     background-color: var(--color-background);
@@ -301,6 +347,7 @@
 
   /* Add new rule to apply bottom padding only when search button exists */
   .predictive-search-form__content-wrapper:has([data-search-results]):not(:has(.predictive-search-results__no-results))
+    > .predictive-search-form__body
     > .predictive-search-form__content {
     padding-block-end: var(--padding-6xl);
   }
@@ -525,5 +572,92 @@
   .predictive-search__close-modal-button:hover {
     --button-color: var(--color-foreground);
     --button-background-color: transparent;
+  }
+
+  /* ── Search Preview Panel ─────────────────────────────────────── */
+  .search-preview-panel {
+    /* hidden by default; JS removes [hidden] to show */
+  }
+
+  .search-preview-panel:not([hidden]) {
+    display: none; /* mobile: always hidden */
+
+    @media screen and (min-width: 750px) {
+      display: flex;
+      flex-direction: column;
+      width: 280px;
+      flex-shrink: 0;
+      border-left: var(--search-border-width) solid var(--color-border);
+      padding: var(--padding-xl);
+      gap: var(--gap-md);
+      overflow: hidden;
+      background-color: var(--color-background);
+      animation: search-element-slide-in-bottom 200ms var(--ease-out-quad) forwards;
+    }
+  }
+
+  .search-preview-panel__media {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: var(--product-corner-radius);
+    background-color: var(--color-input-background);
+    flex-shrink: 0;
+  }
+
+  .search-preview-panel__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: opacity 200ms ease;
+  }
+
+  .search-preview-panel__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+    flex: 1;
+    min-height: 0;
+  }
+
+  .search-preview-panel__title {
+    font-weight: 600;
+    font-size: var(--font-size--sm);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .search-preview-panel__price {
+    font-size: var(--font-size--sm);
+    margin: 0;
+    color: var(--color-foreground);
+  }
+
+  .search-preview-panel__description {
+    font-size: var(--font-size--xs);
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+    margin: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .search-preview-panel__link {
+    display: inline-block;
+    margin-top: var(--margin-sm);
+    font-size: var(--font-size--xs);
+    font-weight: 500;
+    color: var(--color-foreground);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity var(--animation-speed-medium) var(--animation-timing-hover);
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 {% endstylesheet %}
