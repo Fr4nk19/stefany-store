@@ -95,15 +95,10 @@
   }
 
   .predictive-search-results__wrapper-products {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     padding-block-end: var(--padding-sm);
-    gap: var(--gap-md);
     transition: height var(--animation-speed-medium) var(--animation-easing);
-
-    @container (min-width: 550px) {
-      grid-template-columns: repeat(4, 1fr);
-    }
   }
 
   .predictive-search-results__wrapper-products:last-child {
