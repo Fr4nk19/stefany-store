@@ -274,9 +274,35 @@
               },
               "block_order": []
             },
+            "whatsapp_button_stf": {
+              "type": "whatsapp-button",
+              "settings": {
+                "whatsapp_phone": "50376906326",
+                "button_label": "Asesoría personalizada",
+                "whatsapp_message": "Hola, me gustaría recibir asesoría sobre este producto.",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "product_tabs_stf": {
+              "type": "product-tabs",
+              "settings": {
+                "tab_surtido_label": "Surtido",
+                "tab_envio_label": "Envío",
+                "tab_devolucion_label": "Devolución",
+                "fallback_surtido": "{{ closest.product.metafields.custom.surtido | metafield_tag }}",
+                "fallback_envio": "{{ closest.product.metafields.custom.envio | metafield_tag }}",
+                "fallback_devolucion": "{{ closest.product.metafields.custom.devolucion | metafield_tag }}",
+                "padding-block-start": 8,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
             "accordion_iWQwkW": {
               "type": "accordion",
               "name": "t:names.accordion",
+              "disabled": true,
               "settings": {
                 "icon": "plus",
                 "dividers": true,
@@ -416,29 +442,6 @@
                 "accordion_row_XMFatY",
                 "accordion_row_kmdwc8"
               ]
-            },
-            "whatsapp_button_stf": {
-              "type": "whatsapp-button",
-              "settings": {
-                "whatsapp_phone": "",
-                "button_label": "Asesoría personalizada",
-                "whatsapp_message": "Hola, me gustaría recibir asesoría sobre este producto.",
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              }
-            },
-            "product_tabs_stf": {
-              "type": "product-tabs",
-              "settings": {
-                "tab_surtido_label": "Surtido",
-                "tab_envio_label": "Envío",
-                "tab_devolucion_label": "Devolución",
-                "fallback_surtido": "<p>Información de surtido no disponible.</p>",
-                "fallback_envio": "<p>Todos los pedidos se procesan en un plazo de 24 a 48 horas y se envían mediante nuestro servicio de mensajería confiable. La entrega se realiza en un plazo de 3 a 5 días hábiles, dependiendo de la ubicación del destinatario.</p>",
-                "fallback_devolucion": "<p>Aceptamos devoluciones dentro de los 30 días posteriores a la compra. El producto debe estar en su estado original con todas las etiquetas puestas.</p>",
-                "padding-block-start": 8,
-                "padding-block-end": 0
-              }
             }
           },
           "block_order": [

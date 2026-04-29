@@ -297,17 +297,24 @@
             "settings": {
               "title": "SOBRE NOSOTROS",
               "url": "shopify://pages/sobre-nosotros",
-              "menu_type": "link_only",
+              "menu_type": "megamenu_shop",
               "show_bottom_bar": false,
               "shop_all_label": "SHOP ALL",
               "shop_all_url": ""
             }
           },
-          "activity_card_nnxHRf": {
-            "type": "activity_card",
+          "menu_linklist_RgE6Kt": {
+            "type": "menu_linklist",
             "settings": {
-              "title": "SUCURSALES",
-              "image": "shopify://shop_images/U1-5255_4.jpg",
+              "heading": "",
+              "linklist": "sobre-nosotros-menu"
+            }
+          },
+          "promo_image_xqqehC": {
+            "type": "promo_image",
+            "settings": {
+              "image": "shopify://shop_images/BST-O-2274_1.jpg",
+              "label": "Sucursales",
               "url": "#"
             }
           }
@@ -340,7 +347,8 @@
           "activity_card_4d6pta",
           "activity_card_mxrHBH",
           "menu_item_69t8JJ",
-          "activity_card_nnxHRf"
+          "menu_linklist_RgE6Kt",
+          "promo_image_xqqehC"
         ],
         "settings": {
           "logo": "shopify://shop_images/Mask_group.png",

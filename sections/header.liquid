@@ -162,10 +162,6 @@
     assign class = class | append: ' ' | append: header_height_class
   endif
 
-  unless request.page_type == 'index'
-    assign class = class | append: ' header--page-shadow'
-  endunless
-
   if collapse_header_paddings_class
     assign class = class | append: ' ' | append: collapse_header_paddings_class
   endif
@@ -506,12 +502,6 @@
   .header__row--top.divider--page-width .header__columns,
   .header__row--bottom {
     border-bottom: var(--border-bottom-width) solid var(--color-border);
-  }
-
-  /* Shadow on non-home pages — applied to the last visible header row */
-  .header--page-shadow .header__row--bottom,
-  .header--page-shadow:not(:has(.header__row--bottom)) .header__row--top {
-    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 0.08);
   }
 
   @media screen and (max-width: 749px) {
