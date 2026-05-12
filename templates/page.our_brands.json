@@ -16,7 +16,7 @@
           "type": "text",
           "name": "Title",
           "settings": {
-            "text": "<h1><strong>Our Brands</strong></h1>",
+            "text": "<h1>Nuestras Marcas</h1>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -73,6 +73,7 @@
             "collection_title_brands": {
               "type": "collection-title",
               "name": "t:names.collection_title",
+              "disabled": true,
               "settings": {
                 "width": "fit-content",
                 "max_width": "normal",
@@ -120,11 +121,22 @@
       },
       "name": "t:names.collections_editorial",
       "settings": {
-        "collection_list": [],
+        "collection_list": [
+          "stefany",
+          "stefany-basic",
+          "stefany-jeans-1",
+          "stefany-los-angeles",
+          "stf-los-angeles",
+          "stravaganzza",
+          "horse-club",
+          "bebe",
+          "stf-denim"
+        ],
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "columns": 4,
         "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
         "columns_gap": 15,
         "bento_gap": 16,
         "rows_gap": 15,
