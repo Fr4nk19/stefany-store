@@ -40,14 +40,17 @@
       });
 
       const data = await response.json().catch(() => ({}));
+      const succeeded = response.ok && data?.success !== false;
 
-      if (response.ok) {
+      if (succeeded) {
         form.reset();
         successEl?.removeAttribute('hidden');
         successEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
         if (errorEl) {
-          if (data?.errors?.length) {
+          if (data?.message) {
+            errorEl.textContent = data.message;
+          } else if (data?.errors?.length) {
             errorEl.textContent = data.errors.map((e) => e.message).join(' ');
           } else if (data?.error) {
             errorEl.textContent = data.error;
