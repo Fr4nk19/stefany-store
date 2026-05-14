@@ -137,21 +137,30 @@
     <div id="apply" class="job-detail__apply-form">
       <h2 class="job-detail__heading">{{ section.settings.apply_form_heading }}</h2>
 
-      {%- if section.settings.formspree_endpoint == blank -%}
+      {%- if section.settings.web3forms_access_key == blank -%}
         <p class="job-detail__form-warning">
           {{ section.settings.form_not_configured_text }}
         </p>
       {%- else -%}
         <form
           class="job-detail__form"
-          action="{{ section.settings.formspree_endpoint }}"
+          action="https://api.web3forms.com/submit"
           method="POST"
           enctype="multipart/form-data"
           data-job-apply-form
         >
-          <input type="hidden" name="_subject" value="{{ section.settings.email_subject_prefix }} {{ job.title | escape }}">
+          <input type="hidden" name="access_key" value="{{ section.settings.web3forms_access_key }}">
+          <input type="hidden" name="subject" value="{{ section.settings.email_subject_prefix }} {{ job.title | escape }}">
+          <input type="hidden" name="from_name" value="{{ shop.name | escape }} Careers">
           <input type="hidden" name="job_title" value="{{ job.title | escape }}">
           <input type="hidden" name="job_url" value="{{ request.origin }}{{ request.path }}">
+          <input
+            type="checkbox"
+            name="botcheck"
+            style="display: none;"
+            tabindex="-1"
+            autocomplete="off"
+          >
 
           <div class="job-detail__form-row">
             <label for="JobApply-Name">{{ section.settings.form_name_label }}</label>
@@ -370,10 +379,10 @@
       "content": "Application form"
     },
     {
-      "type": "url",
-      "id": "formspree_endpoint",
-      "label": "Formspree endpoint",
-      "info": "Get yours at formspree.io. Example: https://formspree.io/f/xxxyyyzz"
+      "type": "text",
+      "id": "web3forms_access_key",
+      "label": "Web3Forms access key",
+      "info": "Get it free at web3forms.com. The form posts to https://api.web3forms.com/submit"
     },
     {
       "type": "text",
@@ -457,7 +466,7 @@
       "type": "text",
       "id": "form_not_configured_text",
       "label": "Form not configured text (admin only)",
-      "default": "Application form not configured. Add the Formspree endpoint in the section settings."
+      "default": "Application form not configured. Add the Web3Forms access key in the section settings."
     },
     {
       "type": "header",
