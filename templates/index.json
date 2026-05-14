@@ -295,6 +295,7 @@
         "button_3cL8kq": {
           "type": "button",
           "name": "t:names.button",
+          "disabled": true,
           "settings": {
             "label": "VER MÁS",
             "link": "shopify://collections/basicas",
@@ -337,7 +338,7 @@
         "slides_count": 3,
         "slide_1_image_desktop": "shopify://shop_images/4_9df31586-7c8e-43f4-8a1e-ca4fc7c107c7.png",
         "slide_1_image_mobile": "shopify://shop_images/9_1cdc218a-5f79-4c1a-b579-696a55685326.png",
-        "slide_1_link": "shopify://collections/jeans",
+        "slide_1_link": "https://www.stefanymodacatalogo.com/collections/marine-jeans",
         "slide_1_open_in_new_tab": false,
         "slide_2_image_desktop": "shopify://shop_images/5_04940e0d-6a3a-422f-ab7a-bf8787199aa1.png",
         "slide_2_image_mobile": "shopify://shop_images/8_3bbd976e-7408-498d-8f5f-2c81198eab03.png",

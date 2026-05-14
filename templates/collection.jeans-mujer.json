@@ -42,7 +42,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Encuentra tu fit perfecto</p>",
+            "text": "<p></p>{{ closest.collection.description }}",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -284,10 +284,12 @@
           "cropped-flare-jeans",
           "flare-jeans",
           "wide-leg-jeans",
+          "marine-jeans",
           "skinny-jeans",
           "straight-jeans",
           "cargo-jeans",
-          "cropped-straight-jeans"
+          "cropped-straight-jeans",
+          "mom-jeans"
         ],
         "card_height": 460,
         "show_description": false,
