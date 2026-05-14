@@ -1,0 +1,52 @@
+{%- comment -%}
+  Recursively renders a single rich text node.
+  Usage: {% render 'rich-text-node', node: node %}
+{%- endcomment -%}
+
+{%- case node.type -%}
+  {%- when 'paragraph' -%}
+    <p>
+      {%- for child in node.children -%}
+        {%- render 'rich-text-node', node: child -%}
+      {%- endfor -%}
+    </p>
+  {%- when 'heading' -%}
+    {%- assign heading_level = node.level | default: 2 -%}
+    <h{{ heading_level }}>
+      {%- for child in node.children -%}
+        {%- render 'rich-text-node', node: child -%}
+      {%- endfor -%}
+    </h{{ heading_level }}>
+  {%- when 'list' -%}
+    {%- if node.listType == 'ordered' -%}
+      <ol>
+        {%- for child in node.children -%}
+          {%- render 'rich-text-node', node: child -%}
+        {%- endfor -%}
+      </ol>
+    {%- else -%}
+      <ul>
+        {%- for child in node.children -%}
+          {%- render 'rich-text-node', node: child -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  {%- when 'list-item' -%}
+    <li>
+      {%- for child in node.children -%}
+        {%- render 'rich-text-node', node: child -%}
+      {%- endfor -%}
+    </li>
+  {%- when 'link' -%}
+    <a href="{{ node.url | escape }}"{% if node.target %} target="{{ node.target | escape }}"{% endif %}>
+      {%- for child in node.children -%}
+        {%- render 'rich-text-node', node: child -%}
+      {%- endfor -%}
+    </a>
+  {%- when 'text' -%}
+    {%- if node.bold -%}<strong>{%- endif -%}
+    {%- if node.italic -%}<em>{%- endif -%}
+    {{- node.value | escape -}}
+    {%- if node.italic -%}</em>{%- endif -%}
+    {%- if node.bold -%}</strong>{%- endif -%}
+{%- endcase -%}

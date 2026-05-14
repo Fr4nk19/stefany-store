@@ -54,56 +54,56 @@
     {%- if job.about_us != blank -%}
       <section class="job-detail__section">
         <h2 class="job-detail__heading">{{ section.settings.about_us_heading }}</h2>
-        <div class="job-detail__rte">{{ job.about_us }}</div>
+        <div class="job-detail__rte">{%- render 'rich-text', value: job.about_us -%}</div>
       </section>
     {%- endif -%}
 
     {%- if job.purpose_mission != blank -%}
       <section class="job-detail__section">
         <h2 class="job-detail__heading">{{ section.settings.mission_heading }}</h2>
-        <div class="job-detail__rte">{{ job.purpose_mission }}</div>
+        <div class="job-detail__rte">{%- render 'rich-text', value: job.purpose_mission -%}</div>
       </section>
     {%- endif -%}
 
     {%- if job.benefits != blank -%}
       <section class="job-detail__section">
         <h2 class="job-detail__heading">{{ section.settings.benefits_heading }}</h2>
-        <div class="job-detail__rte">{{ job.benefits }}</div>
+        <div class="job-detail__rte">{%- render 'rich-text', value: job.benefits -%}</div>
       </section>
     {%- endif -%}
 
     {%- if job.team != blank -%}
       <section class="job-detail__section">
         <h2 class="job-detail__heading">{{ section.settings.team_heading }}</h2>
-        <div class="job-detail__rte">{{ job.team }}</div>
+        <div class="job-detail__rte">{%- render 'rich-text', value: job.team -%}</div>
       </section>
     {%- endif -%}
 
     {%- if job.about_you != blank -%}
       <section class="job-detail__section">
         <h2 class="job-detail__heading">{{ section.settings.about_you_heading }}</h2>
-        <div class="job-detail__rte">{{ job.about_you }}</div>
+        <div class="job-detail__rte">{%- render 'rich-text', value: job.about_you -%}</div>
       </section>
     {%- endif -%}
 
     {%- if job.responsibilities != blank -%}
       <section class="job-detail__section">
         <h2 class="job-detail__heading">{{ section.settings.responsibilities_heading }}</h2>
-        <div class="job-detail__rte">{{ job.responsibilities }}</div>
+        <div class="job-detail__rte">{%- render 'rich-text', value: job.responsibilities -%}</div>
       </section>
     {%- endif -%}
 
     {%- if job.requirements != blank -%}
       <section class="job-detail__section">
         <h2 class="job-detail__heading">{{ section.settings.requirements_heading }}</h2>
-        <div class="job-detail__rte">{{ job.requirements }}</div>
+        <div class="job-detail__rte">{%- render 'rich-text', value: job.requirements -%}</div>
       </section>
     {%- endif -%}
 
     {%- if job.equality_inclusion != blank -%}
       <section class="job-detail__section">
         <h2 class="job-detail__heading">{{ section.settings.equality_heading }}</h2>
-        <div class="job-detail__rte">{{ job.equality_inclusion }}</div>
+        <div class="job-detail__rte">{%- render 'rich-text', value: job.equality_inclusion -%}</div>
       </section>
     {%- endif -%}
 
