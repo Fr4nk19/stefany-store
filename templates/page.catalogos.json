@@ -89,7 +89,7 @@
         "heading": "CATÁLOGOS",
         "subheading": "Descubre nuestras colecciones",
         "columns": 2,
-        "mobile_columns": 1,
+        "mobile_columns": "1",
         "card_ratio": "3 / 4",
         "columns_gap": 16,
         "rows_gap": 32,
