@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-job",
+      "settings": {
+        "apply_label": "Apply now",
+        "overlay_color": "#00000059",
+        "role_label": "Role",
+        "reports_label": "Reports into",
+        "contract_label": "Contract Type",
+        "location_label": "Location",
+        "about_us_heading": "About Us",
+        "mission_heading": "Our Purpose and Mission",
+        "benefits_heading": "Our Benefits",
+        "team_heading": "The Team",
+        "about_you_heading": "About you",
+        "responsibilities_heading": "You'll be responsible for:",
+        "requirements_heading": "You'll need to have:",
+        "equality_heading": "Equality, Diversity, and Inclusion",
+        "department_label": "Department",
+        "locations_label": "Locations",
+        "remote_label": "Remote status",
+        "employment_label": "Employment type",
+        "apply_form_heading": "Apply for this job",
+        "form_name_label": "First and last name",
+        "form_email_label": "Email",
+        "form_phone_label": "Phone",
+        "form_message_label": "Cover letter",
+        "form_submit_label": "Send application",
+        "form_success_text": "Thanks for applying! We will get back to you soon.",
+        "cta_heading": "Looking for another role?",
+        "cta_button_label": "See all open positions",
+        "cta_button_link": "/pages/jobs",
+        "color_scheme": ""
+      }
+    }
+  },
+  "order": ["main"]
+}
