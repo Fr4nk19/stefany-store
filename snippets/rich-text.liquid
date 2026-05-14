@@ -1,0 +1,12 @@
+{%- comment -%}
+  Renders a Shopify rich text metaobject/metafield field as HTML.
+  Accepts either the field directly or its `.value`.
+  Usage: {% render 'rich-text', value: metaobject.field_name %}
+{%- endcomment -%}
+
+{%- assign rt_root = value.value | default: value -%}
+{%- if rt_root.children -%}
+  {%- for rt_node in rt_root.children -%}
+    {%- render 'rich-text-node', node: rt_node -%}
+  {%- endfor -%}
+{%- endif -%}
