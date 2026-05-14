@@ -159,11 +159,29 @@
           </div>
           <div class="job-detail__form-row">
             <label for="JobApply-Email">{{ section.settings.form_email_label }}</label>
-            <input type="email" id="JobApply-Email" name="email" required>
+            <input
+              type="email"
+              id="JobApply-Email"
+              name="email"
+              autocomplete="email"
+              pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+              title="{{ section.settings.email_invalid_text }}"
+              required
+            >
           </div>
           <div class="job-detail__form-row">
             <label for="JobApply-Phone">{{ section.settings.form_phone_label }}</label>
-            <input type="tel" id="JobApply-Phone" name="phone">
+            <input
+              type="tel"
+              id="JobApply-Phone"
+              name="phone"
+              autocomplete="tel"
+              placeholder="7777-7777"
+              pattern="[0-9]{4}-[0-9]{4}"
+              maxlength="9"
+              inputmode="numeric"
+              title="{{ section.settings.phone_invalid_text }}"
+            >
           </div>
           <div class="job-detail__form-row">
             <label for="JobApply-CV">{{ section.settings.form_cv_label }}</label>
@@ -386,6 +404,18 @@
       "id": "form_phone_label",
       "label": "Phone label",
       "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "phone_invalid_text",
+      "label": "Phone invalid message",
+      "default": "Format must be 7777-7777"
+    },
+    {
+      "type": "text",
+      "id": "email_invalid_text",
+      "label": "Email invalid message",
+      "default": "Enter a valid email address"
     },
     {
       "type": "text",
