@@ -1,0 +1,110 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "disabled": true,
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "disabled": true,
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 0,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "catalogs": {
+      "type": "catalogs",
+      "blocks": {
+        "catalog_mujer": {
+          "type": "catalog",
+          "settings": {
+            "title": "MUJER",
+            "description": "Nueva colección para mamá",
+            "badge": "MAYO 2026",
+            "link": ""
+          }
+        },
+        "catalog_hombre": {
+          "type": "catalog",
+          "settings": {
+            "title": "HOMBRE",
+            "description": "Para el hombre que impulsa",
+            "badge": "MAYO 2026",
+            "link": ""
+          }
+        },
+        "catalog_mayorista": {
+          "type": "catalog",
+          "settings": {
+            "title": "MAYORISTA",
+            "description": "Sé mayorista con pocas prendas",
+            "badge": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "catalog_mujer",
+        "catalog_hombre",
+        "catalog_mayorista"
+      ],
+      "settings": {
+        "heading": "CATÁLOGOS",
+        "subheading": "Descubre nuestras colecciones",
+        "columns": 2,
+        "mobile_columns": 1,
+        "card_ratio": "3 / 4",
+        "columns_gap": 16,
+        "rows_gap": 32,
+        "show_button": true,
+        "button_text": "VER CATÁLOGO",
+        "open_in_new_tab": true,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 32,
+        "padding-block-end": 64
+      }
+    }
+  },
+  "order": [
+    "main",
+    "catalogs"
+  ]
+}
