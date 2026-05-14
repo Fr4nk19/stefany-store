@@ -142,6 +142,85 @@
   color: rgb(from var(--color-foreground) r g b / 0.85);
 }
 
+.job-detail__apply-form {
+  margin-top: 24px;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.job-detail__form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.job-detail__form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.job-detail__form-row label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.job-detail__form-row input,
+.job-detail__form-row textarea {
+  width: 100%;
+  border: 1px solid rgb(from var(--color-foreground) r g b / 0.2);
+  border-radius: 8px;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.job-detail__form-row input:focus,
+.job-detail__form-row textarea:focus {
+  border-color: rgb(from var(--color-foreground) r g b / 0.5);
+}
+
+.job-detail__form-submit {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+.job-detail__form-success {
+  padding: 12px 16px;
+  border: 1px solid rgb(from var(--color-foreground) r g b / 0.2);
+  border-radius: 8px;
+  background: rgb(from var(--color-foreground) r g b / 0.04);
+}
+
+.job-detail__form-errors {
+  margin: 0 0 8px;
+  padding-inline-start: 1.25rem;
+  color: #b00020;
+}
+
+.job-detail__cta {
+  margin-top: 32px;
+  padding: 32px 0;
+  border-top: 1px solid rgb(from var(--color-foreground) r g b / 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.job-detail__cta-heading {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
 @media (max-width: 749px) {
   .job-detail__info--stack .job-detail__info-row,
   .job-detail__info--table .job-detail__info-row {
