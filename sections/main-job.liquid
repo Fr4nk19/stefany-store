@@ -146,7 +146,6 @@
           class="job-detail__form"
           action="https://api.web3forms.com/submit"
           method="POST"
-          enctype="multipart/form-data"
           data-job-apply-form
         >
           <input type="hidden" name="access_key" value="{{ section.settings.web3forms_access_key }}">
@@ -193,16 +192,28 @@
             >
           </div>
           <div class="job-detail__form-row">
-            <label for="JobApply-CV">{{ section.settings.form_cv_label }}</label>
+            <label for="JobApply-CVUrl">{{ section.settings.form_cv_label }}</label>
             <input
-              type="file"
-              id="JobApply-CV"
-              name="cv"
-              accept=".pdf,.doc,.docx"
+              type="url"
+              id="JobApply-CVUrl"
+              name="cv_url"
+              placeholder="https://drive.google.com/..."
               required
             >
             {%- if section.settings.form_cv_help != blank -%}
               <small class="job-detail__form-help">{{ section.settings.form_cv_help }}</small>
+            {%- endif -%}
+          </div>
+          <div class="job-detail__form-row">
+            <label for="JobApply-LinkedIn">{{ section.settings.form_linkedin_label }}</label>
+            <input
+              type="url"
+              id="JobApply-LinkedIn"
+              name="linkedin"
+              placeholder="https://www.linkedin.com/in/..."
+            >
+            {%- if section.settings.form_linkedin_help != blank -%}
+              <small class="job-detail__form-help">{{ section.settings.form_linkedin_help }}</small>
             {%- endif -%}
           </div>
           <div class="job-detail__form-row">
@@ -429,14 +440,26 @@
     {
       "type": "text",
       "id": "form_cv_label",
-      "label": "CV upload label",
-      "default": "Upload your CV"
+      "label": "CV link label",
+      "default": "Link to your CV"
     },
     {
       "type": "text",
       "id": "form_cv_help",
-      "label": "CV help text",
-      "default": "PDF, DOC or DOCX, max 10MB"
+      "label": "CV link help text",
+      "default": "Paste a public link from Google Drive, Dropbox, OneDrive or similar."
+    },
+    {
+      "type": "text",
+      "id": "form_linkedin_label",
+      "label": "LinkedIn label",
+      "default": "LinkedIn profile"
+    },
+    {
+      "type": "text",
+      "id": "form_linkedin_help",
+      "label": "LinkedIn help text",
+      "default": "Optional. Example: https://www.linkedin.com/in/your-handle"
     },
     {
       "type": "text",
