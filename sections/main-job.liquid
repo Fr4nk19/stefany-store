@@ -136,40 +136,65 @@
 
     <div id="apply" class="job-detail__apply-form">
       <h2 class="job-detail__heading">{{ section.settings.apply_form_heading }}</h2>
-      {%- form 'contact', class: 'job-detail__form' -%}
-        {%- if form.posted_successfully? -%}
-          <p class="job-detail__form-success">{{ section.settings.form_success_text }}</p>
-        {%- endif -%}
-        {%- if form.errors -%}
-          <ul class="job-detail__form-errors">
-            {%- for field in form.errors -%}
-              <li>{{ form.errors.messages[field] }}</li>
-            {%- endfor -%}
-          </ul>
-        {%- endif -%}
 
-        <input type="hidden" name="contact[job_title]" value="{{ job.title | escape }}">
+      {%- if section.settings.formspree_endpoint == blank -%}
+        <p class="job-detail__form-warning">
+          {{ section.settings.form_not_configured_text }}
+        </p>
+      {%- else -%}
+        <form
+          class="job-detail__form"
+          action="{{ section.settings.formspree_endpoint }}"
+          method="POST"
+          enctype="multipart/form-data"
+          data-job-apply-form
+        >
+          <input type="hidden" name="_subject" value="{{ section.settings.email_subject_prefix }} {{ job.title | escape }}">
+          <input type="hidden" name="job_title" value="{{ job.title | escape }}">
+          <input type="hidden" name="job_url" value="{{ request.origin }}{{ request.path }}">
 
-        <div class="job-detail__form-row">
-          <label for="JobContact-Name">{{ section.settings.form_name_label }}</label>
-          <input type="text" id="JobContact-Name" name="contact[name]" required>
-        </div>
-        <div class="job-detail__form-row">
-          <label for="JobContact-Email">{{ section.settings.form_email_label }}</label>
-          <input type="email" id="JobContact-Email" name="contact[email]" required>
-        </div>
-        <div class="job-detail__form-row">
-          <label for="JobContact-Phone">{{ section.settings.form_phone_label }}</label>
-          <input type="tel" id="JobContact-Phone" name="contact[phone]">
-        </div>
-        <div class="job-detail__form-row">
-          <label for="JobContact-Body">{{ section.settings.form_message_label }}</label>
-          <textarea id="JobContact-Body" name="contact[body]" rows="6"></textarea>
-        </div>
-        <button type="submit" class="button job-detail__form-submit">
-          {{ section.settings.form_submit_label }}
-        </button>
-      {%- endform -%}
+          <div class="job-detail__form-row">
+            <label for="JobApply-Name">{{ section.settings.form_name_label }}</label>
+            <input type="text" id="JobApply-Name" name="name" required>
+          </div>
+          <div class="job-detail__form-row">
+            <label for="JobApply-Email">{{ section.settings.form_email_label }}</label>
+            <input type="email" id="JobApply-Email" name="email" required>
+          </div>
+          <div class="job-detail__form-row">
+            <label for="JobApply-Phone">{{ section.settings.form_phone_label }}</label>
+            <input type="tel" id="JobApply-Phone" name="phone">
+          </div>
+          <div class="job-detail__form-row">
+            <label for="JobApply-CV">{{ section.settings.form_cv_label }}</label>
+            <input
+              type="file"
+              id="JobApply-CV"
+              name="cv"
+              accept=".pdf,.doc,.docx"
+              required
+            >
+            {%- if section.settings.form_cv_help != blank -%}
+              <small class="job-detail__form-help">{{ section.settings.form_cv_help }}</small>
+            {%- endif -%}
+          </div>
+          <div class="job-detail__form-row">
+            <label for="JobApply-Body">{{ section.settings.form_message_label }}</label>
+            <textarea id="JobApply-Body" name="message" rows="6"></textarea>
+          </div>
+          <button type="submit" class="button job-detail__form-submit">
+            {{ section.settings.form_submit_label }}
+          </button>
+
+          <p class="job-detail__form-success" data-job-apply-success hidden>
+            {{ section.settings.form_success_text }}
+          </p>
+          <p class="job-detail__form-error" data-job-apply-error hidden>
+            {{ section.settings.form_error_text }}
+          </p>
+        </form>
+        <script src="{{ 'job-apply.js' | asset_url }}" defer></script>
+      {%- endif -%}
     </div>
 
     {%- if section.settings.cta_heading != blank or section.settings.cta_button_label != blank -%}
@@ -327,6 +352,18 @@
       "content": "Application form"
     },
     {
+      "type": "url",
+      "id": "formspree_endpoint",
+      "label": "Formspree endpoint",
+      "info": "Get yours at formspree.io. Example: https://formspree.io/f/xxxyyyzz"
+    },
+    {
+      "type": "text",
+      "id": "email_subject_prefix",
+      "label": "Email subject prefix",
+      "default": "New application:"
+    },
+    {
       "type": "text",
       "id": "apply_form_heading",
       "label": "Form heading",
@@ -352,6 +389,18 @@
     },
     {
       "type": "text",
+      "id": "form_cv_label",
+      "label": "CV upload label",
+      "default": "Upload your CV"
+    },
+    {
+      "type": "text",
+      "id": "form_cv_help",
+      "label": "CV help text",
+      "default": "PDF, DOC or DOCX, max 10MB"
+    },
+    {
+      "type": "text",
       "id": "form_message_label",
       "label": "Cover letter label",
       "default": "Cover letter"
@@ -367,6 +416,18 @@
       "id": "form_success_text",
       "label": "Success message",
       "default": "Thanks for applying! We will get back to you soon."
+    },
+    {
+      "type": "text",
+      "id": "form_error_text",
+      "label": "Error message",
+      "default": "Something went wrong. Please try again or email us directly."
+    },
+    {
+      "type": "text",
+      "id": "form_not_configured_text",
+      "label": "Form not configured text (admin only)",
+      "default": "Application form not configured. Add the Formspree endpoint in the section settings."
     },
     {
       "type": "header",
