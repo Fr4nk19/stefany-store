@@ -28,6 +28,7 @@
       return;
     }
 
+    const formData = new FormData(form);
     inputs.forEach((el) => (el.disabled = true));
     const originalLabel = submitButton.textContent;
     submitButton.textContent = '…';
@@ -35,7 +36,7 @@
     try {
       const response = await fetch(form.action, {
         method: 'POST',
-        body: new FormData(form),
+        body: formData,
         headers: { Accept: 'application/json' },
       });
 
