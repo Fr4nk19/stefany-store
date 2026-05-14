@@ -1,0 +1,286 @@
+{{ 'main-job.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign job = metaobject
+  assign has_hero_image = false
+  if job.hero_image != blank
+    assign has_hero_image = true
+  endif
+-%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<section class="job-detail color-{{ section.settings.color_scheme }}">
+  <header class="job-detail__hero {% if has_hero_image %}job-detail__hero--with-image{% endif %}">
+    {%- if has_hero_image -%}
+      <div class="job-detail__hero-media">
+        {{ job.hero_image | image_url: width: 1800 | image_tag: loading: 'eager', widths: '600,900,1200,1800', sizes: '100vw' }}
+        <div class="job-detail__hero-overlay" style="background: {{ section.settings.overlay_color }};"></div>
+      </div>
+    {%- endif -%}
+    <div class="job-detail__hero-content">
+      <h1 class="job-detail__title">{{ job.title | default: 'Job title' }}</h1>
+      <a href="#apply" class="button job-detail__apply">{{ section.settings.apply_label }}</a>
+    </div>
+  </header>
+
+  <div class="job-detail__body page-width-content">
+    <dl class="job-detail__info job-detail__info--stack">
+      {%- if job.title != blank -%}
+        <div class="job-detail__info-row">
+          <dt>{{ section.settings.role_label }}</dt>
+          <dd>{{ job.title }}</dd>
+        </div>
+      {%- endif -%}
+      {%- if job.reports_into != blank -%}
+        <div class="job-detail__info-row">
+          <dt>{{ section.settings.reports_label }}</dt>
+          <dd>{{ job.reports_into }}</dd>
+        </div>
+      {%- endif -%}
+      {%- if job.contract_type != blank -%}
+        <div class="job-detail__info-row">
+          <dt>{{ section.settings.contract_label }}</dt>
+          <dd>{{ job.contract_type }}</dd>
+        </div>
+      {%- endif -%}
+      {%- if job.location != blank -%}
+        <div class="job-detail__info-row">
+          <dt>{{ section.settings.location_label }}</dt>
+          <dd>{{ job.location }}</dd>
+        </div>
+      {%- endif -%}
+    </dl>
+
+    {%- if job.about_us != blank -%}
+      <section class="job-detail__section">
+        <h2 class="job-detail__heading">{{ section.settings.about_us_heading }}</h2>
+        <div class="job-detail__rte">{{ job.about_us }}</div>
+      </section>
+    {%- endif -%}
+
+    {%- if job.purpose_mission != blank -%}
+      <section class="job-detail__section">
+        <h2 class="job-detail__heading">{{ section.settings.mission_heading }}</h2>
+        <div class="job-detail__rte">{{ job.purpose_mission }}</div>
+      </section>
+    {%- endif -%}
+
+    {%- if job.benefits != blank -%}
+      <section class="job-detail__section">
+        <h2 class="job-detail__heading">{{ section.settings.benefits_heading }}</h2>
+        <div class="job-detail__rte">{{ job.benefits }}</div>
+      </section>
+    {%- endif -%}
+
+    {%- if job.team != blank -%}
+      <section class="job-detail__section">
+        <h2 class="job-detail__heading">{{ section.settings.team_heading }}</h2>
+        <div class="job-detail__rte">{{ job.team }}</div>
+      </section>
+    {%- endif -%}
+
+    {%- if job.about_you != blank -%}
+      <section class="job-detail__section">
+        <h2 class="job-detail__heading">{{ section.settings.about_you_heading }}</h2>
+        <div class="job-detail__rte">{{ job.about_you }}</div>
+      </section>
+    {%- endif -%}
+
+    {%- if job.responsibilities != blank -%}
+      <section class="job-detail__section">
+        <h2 class="job-detail__heading">{{ section.settings.responsibilities_heading }}</h2>
+        <div class="job-detail__rte">{{ job.responsibilities }}</div>
+      </section>
+    {%- endif -%}
+
+    {%- if job.requirements != blank -%}
+      <section class="job-detail__section">
+        <h2 class="job-detail__heading">{{ section.settings.requirements_heading }}</h2>
+        <div class="job-detail__rte">{{ job.requirements }}</div>
+      </section>
+    {%- endif -%}
+
+    {%- if job.equality_inclusion != blank -%}
+      <section class="job-detail__section">
+        <h2 class="job-detail__heading">{{ section.settings.equality_heading }}</h2>
+        <div class="job-detail__rte">{{ job.equality_inclusion }}</div>
+      </section>
+    {%- endif -%}
+
+    <dl class="job-detail__info job-detail__info--table">
+      {%- if job.department != blank -%}
+        <div class="job-detail__info-row">
+          <dt>{{ section.settings.department_label }}</dt>
+          <dd>{{ job.department }}</dd>
+        </div>
+      {%- endif -%}
+      {%- if job.location != blank -%}
+        <div class="job-detail__info-row">
+          <dt>{{ section.settings.locations_label }}</dt>
+          <dd>{{ job.location }}</dd>
+        </div>
+      {%- endif -%}
+      {%- if job.remote_status != blank -%}
+        <div class="job-detail__info-row">
+          <dt>{{ section.settings.remote_label }}</dt>
+          <dd>{{ job.remote_status }}</dd>
+        </div>
+      {%- endif -%}
+      {%- if job.employment_type != blank -%}
+        <div class="job-detail__info-row">
+          <dt>{{ section.settings.employment_label }}</dt>
+          <dd>{{ job.employment_type }}</dd>
+        </div>
+      {%- endif -%}
+    </dl>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Job detail",
+  "class": "section-wrapper",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Renders a single job metaobject. Use inside the metaobject.job.json template."
+    },
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "apply_label",
+      "label": "Apply button label",
+      "default": "Apply now"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Image overlay",
+      "alpha": true,
+      "default": "#00000059"
+    },
+    {
+      "type": "header",
+      "content": "Info labels"
+    },
+    {
+      "type": "text",
+      "id": "role_label",
+      "label": "Role label",
+      "default": "Role"
+    },
+    {
+      "type": "text",
+      "id": "reports_label",
+      "label": "Reports into label",
+      "default": "Reports into"
+    },
+    {
+      "type": "text",
+      "id": "contract_label",
+      "label": "Contract Type label",
+      "default": "Contract Type"
+    },
+    {
+      "type": "text",
+      "id": "location_label",
+      "label": "Location label",
+      "default": "Location"
+    },
+    {
+      "type": "header",
+      "content": "Section headings"
+    },
+    {
+      "type": "text",
+      "id": "about_us_heading",
+      "label": "About Us",
+      "default": "About Us"
+    },
+    {
+      "type": "text",
+      "id": "mission_heading",
+      "label": "Purpose and Mission",
+      "default": "Our Purpose and Mission"
+    },
+    {
+      "type": "text",
+      "id": "benefits_heading",
+      "label": "Benefits",
+      "default": "Our Benefits"
+    },
+    {
+      "type": "text",
+      "id": "team_heading",
+      "label": "The Team",
+      "default": "The Team"
+    },
+    {
+      "type": "text",
+      "id": "about_you_heading",
+      "label": "About you",
+      "default": "About you"
+    },
+    {
+      "type": "text",
+      "id": "responsibilities_heading",
+      "label": "Responsibilities",
+      "default": "You'll be responsible for:"
+    },
+    {
+      "type": "text",
+      "id": "requirements_heading",
+      "label": "Requirements",
+      "default": "You'll need to have:"
+    },
+    {
+      "type": "text",
+      "id": "equality_heading",
+      "label": "Equality",
+      "default": "Equality, Diversity, and Inclusion"
+    },
+    {
+      "type": "header",
+      "content": "Summary table labels"
+    },
+    {
+      "type": "text",
+      "id": "department_label",
+      "label": "Department label",
+      "default": "Department"
+    },
+    {
+      "type": "text",
+      "id": "locations_label",
+      "label": "Locations label",
+      "default": "Locations"
+    },
+    {
+      "type": "text",
+      "id": "remote_label",
+      "label": "Remote status label",
+      "default": "Remote status"
+    },
+    {
+      "type": "text",
+      "id": "employment_label",
+      "label": "Employment type label",
+      "default": "Employment type"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}
