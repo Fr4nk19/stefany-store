@@ -1,0 +1,331 @@
+{{ 'job-listings.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'job-listings.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign jobs = section.blocks | where: 'type', 'job'
+  assign departments = ''
+  assign locations = ''
+  assign remote_statuses = ''
+  assign employment_types = ''
+
+  for job in jobs
+    if job.settings.department != blank
+      assign departments = departments | append: job.settings.department | append: '|'
+    endif
+    if job.settings.location != blank
+      assign locations = locations | append: job.settings.location | append: '|'
+    endif
+    if job.settings.remote_status != blank
+      assign remote_statuses = remote_statuses | append: job.settings.remote_status | append: '|'
+    endif
+    if job.settings.employment_type != blank
+      assign employment_types = employment_types | append: job.settings.employment_type | append: '|'
+    endif
+  endfor
+
+  assign departments_list = departments | split: '|' | uniq | compact
+  assign locations_list = locations | split: '|' | uniq | compact
+  assign remote_statuses_list = remote_statuses | split: '|' | uniq | compact
+  assign employment_types_list = employment_types | split: '|' | uniq | compact
+-%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="section page-width-content color-{{ section.settings.color_scheme }}">
+  <div
+    class="job-listings"
+    style="
+      padding-block-start: {{ section.settings.padding-block-start }}px;
+      padding-block-end: {{ section.settings.padding-block-end }}px;
+    "
+  >
+    <div class="job-listings__toolbar">
+      <div class="job-listings__search">
+        <svg class="job-listings__search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          type="search"
+          class="job-listings__search-input"
+          placeholder="{{ section.settings.search_placeholder }}"
+          aria-label="{{ section.settings.search_placeholder }}"
+          data-jobs-search
+        >
+      </div>
+
+      <div class="job-listings__filters">
+        {%- if departments_list.size > 0 -%}
+          <div class="job-listings__filter">
+            <select class="job-listings__select" data-jobs-filter="department" aria-label="{{ section.settings.departments_label }}">
+              <option value="">{{ section.settings.departments_label }}</option>
+              {%- for item in departments_list -%}
+                <option value="{{ item | escape }}">{{ item }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endif -%}
+
+        {%- if locations_list.size > 0 -%}
+          <div class="job-listings__filter">
+            <select class="job-listings__select" data-jobs-filter="location" aria-label="{{ section.settings.locations_label }}">
+              <option value="">{{ section.settings.locations_label }}</option>
+              {%- for item in locations_list -%}
+                <option value="{{ item | escape }}">{{ item }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endif -%}
+
+        {%- if remote_statuses_list.size > 0 -%}
+          <div class="job-listings__filter">
+            <select class="job-listings__select" data-jobs-filter="remote" aria-label="{{ section.settings.remote_label }}">
+              <option value="">{{ section.settings.remote_label }}</option>
+              {%- for item in remote_statuses_list -%}
+                <option value="{{ item | escape }}">{{ item }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endif -%}
+
+        {%- if employment_types_list.size > 0 -%}
+          <div class="job-listings__filter">
+            <select class="job-listings__select" data-jobs-filter="employment" aria-label="{{ section.settings.employment_label }}">
+              <option value="">{{ section.settings.employment_label }}</option>
+              {%- for item in employment_types_list -%}
+                <option value="{{ item | escape }}">{{ item }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <p class="job-listings__count" data-jobs-count>
+      <span data-jobs-count-number>{{ jobs.size }}</span> {{ section.settings.jobs_label }}
+    </p>
+
+    <ul class="job-listings__list" data-jobs-list>
+      {%- for block in jobs -%}
+        <li
+          class="job-listings__item"
+          data-job
+          data-job-title="{{ block.settings.title | escape | downcase }}"
+          data-job-department="{{ block.settings.department | escape }}"
+          data-job-location="{{ block.settings.location | escape }}"
+          data-job-remote="{{ block.settings.remote_status | escape }}"
+          data-job-employment="{{ block.settings.employment_type | escape }}"
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="job-listings__link">
+          {%- endif -%}
+          <h3 class="job-listings__title">{{ block.settings.title }}</h3>
+          <div class="job-listings__meta">
+            {%- if block.settings.department != blank -%}
+              <span class="job-listings__meta-item">{{ block.settings.department }}</span>
+            {%- endif -%}
+            {%- if block.settings.location != blank -%}
+              <span class="job-listings__meta-item">{{ block.settings.location }}</span>
+            {%- endif -%}
+            {%- if block.settings.remote_status != blank -%}
+              <span class="job-listings__meta-item job-listings__meta-item--remote">
+                {{ block.settings.remote_status }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                  <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                  <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                </svg>
+              </span>
+            {%- endif -%}
+            {%- if block.settings.employment_type != blank -%}
+              <span class="job-listings__meta-item">{{ block.settings.employment_type }}</span>
+            {%- endif -%}
+          </div>
+          {%- if block.settings.link != blank -%}
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    <p class="job-listings__empty" data-jobs-empty hidden>{{ section.settings.empty_text }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Job listings",
+  "class": "section-wrapper",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Labels"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Search"
+    },
+    {
+      "type": "text",
+      "id": "jobs_label",
+      "label": "Jobs count label",
+      "default": "jobs"
+    },
+    {
+      "type": "text",
+      "id": "departments_label",
+      "label": "Departments filter label",
+      "default": "Departments"
+    },
+    {
+      "type": "text",
+      "id": "locations_label",
+      "label": "Locations filter label",
+      "default": "Locations"
+    },
+    {
+      "type": "text",
+      "id": "remote_label",
+      "label": "Remote statuses filter label",
+      "default": "Remote Statuses"
+    },
+    {
+      "type": "text",
+      "id": "employment_label",
+      "label": "Employment types filter label",
+      "default": "Employment Types"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty state text",
+      "default": "No jobs match your search."
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "job",
+      "name": "Job",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Job title",
+          "default": "Job title"
+        },
+        {
+          "type": "text",
+          "id": "department",
+          "label": "Department",
+          "default": "Department"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "Location"
+        },
+        {
+          "type": "text",
+          "id": "remote_status",
+          "label": "Remote status",
+          "info": "e.g. Remote, Hybrid, On-site",
+          "default": "Hybrid"
+        },
+        {
+          "type": "text",
+          "id": "employment_type",
+          "label": "Employment type",
+          "info": "e.g. Full-time, Part-time, Contract"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Apply link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Job listings",
+      "blocks": [
+        {
+          "type": "job",
+          "settings": {
+            "title": "Senior Loyalty Manager",
+            "department": "Digital Trade",
+            "location": "London Headoffice",
+            "remote_status": "Hybrid"
+          }
+        },
+        {
+          "type": "job",
+          "settings": {
+            "title": "eCommerce Merchandising Coordinator",
+            "department": "Digital Trade",
+            "location": "London Headoffice",
+            "remote_status": "Hybrid"
+          }
+        },
+        {
+          "type": "job",
+          "settings": {
+            "title": "Head of Social Media",
+            "department": "Social Media",
+            "location": "London Headoffice",
+            "remote_status": "Hybrid"
+          }
+        },
+        {
+          "type": "job",
+          "settings": {
+            "title": "Assistant Buyer",
+            "department": "Buying",
+            "location": "London Headoffice",
+            "remote_status": "Hybrid"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
