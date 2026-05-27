@@ -1073,7 +1073,7 @@
     {%- comment -%} LOGO {%- endcomment -%}
     <a href="/" class="header__logo" aria-label="{{ shop.name }}">
       {%- if section.settings.logo != blank -%}
-        {{ section.settings.logo | image_url: width: 800 | image_tag: class: 'header__logo-img', alt: shop.name }}
+        {{ section.settings.logo | image_url: width: 400 | image_tag: class: 'header__logo-img', alt: shop.name, loading: 'eager', fetchpriority: 'high', widths: '36,72,144,200,400', sizes: '(max-width: 991px) ' | append: section.settings.logo_width | times: 0.8 | ceil | append: 'px, ' | append: section.settings.logo_width | append: 'px' }}
       {%- else -%}
         <span style="font-size:20px;font-weight:700;color:inherit;">{{ shop.name }}</span>
       {%- endif -%}
@@ -1320,7 +1320,7 @@
   <div class="mobile-drawer__header">
     {%- if section.settings.logo != blank -%}
       <a href="/" aria-label="{{ shop.name }}">
-        {{ section.settings.logo | image_url: width: 400 | image_tag: class: 'header__logo-img', style: 'max-width:150px;height:auto;', alt: shop.name }}
+        {{ section.settings.logo | image_url: width: 300 | image_tag: class: 'header__logo-img', style: 'max-width:150px;height:auto;', alt: shop.name, loading: 'lazy' }}
       </a>
     {%- else -%}
       <a href="/" style="font-size:18px;font-weight:700;color:#1a1a1a;text-decoration:none;">{{ shop.name }}</a>
