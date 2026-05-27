@@ -26,7 +26,9 @@
     {% assign style_value = style_value | append: 'object-position: inherit;' %}
   {% endif %}
 
-  {{ image | image_url: height: image_height | image_tag: class: class, srcset: image_srcset, style: style_value }}
+  {% assign image_loading = loading | default: 'lazy' %}
+
+  {{ image | image_url: height: image_height | image_tag: class: class, srcset: image_srcset, style: style_value, loading: image_loading }}
 {% elsif text_fallback %}
   {{ text_fallback }}
 {% endif %}
