@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -55,14 +64,16 @@
         "catalog_mujer": {
           "type": "catalog",
           "settings": {
+            "image": "shopify://shop_images/CATALOGO_MAYO_DIA_DE_LA_MADRE_2026_page-0001.jpg",
             "title": "MUJER",
             "description": "Nueva colección para mamá",
             "badge": "MAYO 2026",
-            "link": ""
+            "link": "https://cdn.shopify.com/s/files/1/0679/9107/7176/files/CATALOGO_MAYO_DIA_DE_LA_MADRE_2026_compressed.pdf?v=1778800564"
           }
         },
         "catalog_hombre": {
           "type": "catalog",
+          "disabled": true,
           "settings": {
             "title": "HOMBRE",
             "description": "Para el hombre que impulsa",
@@ -72,6 +83,7 @@
         },
         "catalog_mayorista": {
           "type": "catalog",
+          "disabled": true,
           "settings": {
             "title": "MAYORISTA",
             "description": "Sé mayorista con pocas prendas",

@@ -317,6 +317,17 @@
               "label": "Sucursales",
               "url": "#"
             }
+          },
+          "menu_item_ErtBCm": {
+            "type": "menu_item",
+            "settings": {
+              "title": "Catalogos",
+              "url": "shopify://pages/catalogos",
+              "menu_type": "link_only",
+              "show_bottom_bar": false,
+              "shop_all_label": "SHOP ALL",
+              "shop_all_url": ""
+            }
           }
         },
         "block_order": [
@@ -348,7 +359,8 @@
           "activity_card_mxrHBH",
           "menu_item_69t8JJ",
           "menu_linklist_RgE6Kt",
-          "promo_image_xqqehC"
+          "promo_image_xqqehC",
+          "menu_item_ErtBCm"
         ],
         "settings": {
           "logo": "shopify://shop_images/Mask_group.png",
