@@ -1073,9 +1073,7 @@
     {%- comment -%} LOGO {%- endcomment -%}
     <a href="/" class="header__logo" aria-label="{{ shop.name }}">
       {%- if section.settings.logo != blank -%}
-        {%- assign logo_mobile_width = section.settings.logo_width | times: 0.8 | ceil -%}
-        {%- capture logo_sizes -%}(max-width: 991px) {{ logo_mobile_width }}px, {{ section.settings.logo_width }}px{%- endcapture -%}
-        {{ section.settings.logo | image_url: width: 400 | image_tag: class: 'header__logo-img', alt: shop.name, loading: 'eager', fetchpriority: 'high', widths: '36,72,144,200,400', sizes: logo_sizes }}
+        {{ section.settings.logo | image_url: width: 800 | image_tag: class: 'header__logo-img', alt: shop.name, loading: 'eager', fetchpriority: 'high' }}
       {%- else -%}
         <span style="font-size:20px;font-weight:700;color:inherit;">{{ shop.name }}</span>
       {%- endif -%}
