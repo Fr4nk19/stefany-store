@@ -116,6 +116,35 @@
         "padding-block-end": 80
       }
     },
+    "application_form": {
+      "type": "job-application-form",
+      "settings": {
+        "anchor_id": "apply",
+        "heading": "¿No encuentras la vacante ideal?",
+        "subheading": "Envíanos tu información y te contactaremos cuando se abra una posición compatible con tu perfil.",
+        "web3forms_access_key": "3e4b71be-6b79-47b8-8184-dbda7920c09a",
+        "email_subject": "Nueva aplicación espontánea",
+        "form_name_label": "Nombre y apellido",
+        "form_email_label": "Correo electrónico",
+        "form_phone_label": "Teléfono",
+        "phone_invalid_text": "El formato debe ser 7777-7777",
+        "email_invalid_text": "Ingresa un correo válido",
+        "form_position_label": "Puesto de interés",
+        "form_position_placeholder": "Ej. Diseñadora, Vendedora, Marketing...",
+        "form_cv_label": "Enlace a tu CV",
+        "form_cv_help": "Pega un enlace público de Google Drive, Dropbox, OneDrive o similar.",
+        "form_linkedin_label": "Perfil de LinkedIn",
+        "form_linkedin_help": "Opcional. Ejemplo: https://www.linkedin.com/in/tu-usuario",
+        "form_message_label": "Cuéntanos sobre ti",
+        "form_submit_label": "Enviar aplicación",
+        "form_success_text": "¡Gracias por aplicar! Nos pondremos en contacto contigo pronto.",
+        "form_error_text": "Algo salió mal. Inténtalo de nuevo o escríbenos directamente.",
+        "form_not_configured_text": "Formulario no configurado. Agrega la access key de Web3Forms en los ajustes de la sección.",
+        "color_scheme": "scheme-2",
+        "padding-block-start": 48,
+        "padding-block-end": 72
+      }
+    },
     "about": {
       "type": "section",
       "blocks": {
@@ -206,6 +235,7 @@
   "order": [
     "hero_jobs",
     "job_listings",
+    "application_form",
     "about"
   ]
 }
