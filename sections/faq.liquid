@@ -1,0 +1,353 @@
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+
+<div class="faq-section page-width color-{{ section.settings.color_scheme }}"
+  style="
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+
+  {%- if section.settings.title != blank -%}
+    <h2 class="faq-section__title">{{ section.settings.title }}</h2>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="faq-section__list">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq_item' -%}
+          <div class="faq-item" {{ block.shopify_attributes }}>
+            <details class="faq-item__details">
+              <summary class="faq-item__summary">
+                <span class="faq-item__question">{{ block.settings.question }}</span>
+                <span class="faq-item__icon faq-item__icon--plus" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </span>
+                <span class="faq-item__icon faq-item__icon--close" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+              </summary>
+              <div class="faq-item__answer">
+                {{ block.settings.answer }}
+              </div>
+            </details>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  {%- assign has_contact = section.settings.show_email_card or section.settings.show_phone_card -%}
+  {%- if has_contact -%}
+    <div class="faq-section__contact">
+      {%- if section.settings.show_email_card -%}
+        <div class="faq-contact-card">
+          <div class="faq-contact-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <h3 class="faq-contact-card__title">{{ section.settings.email_title | default: 'Email Us' }}</h3>
+          <p class="faq-contact-card__text">{{ section.settings.email_text | default: 'Have questions or need assistance? Reach out to us via email. We\'re here to help!' }}</p>
+          {%- if section.settings.email_address != blank -%}
+            <a href="mailto:{{ section.settings.email_address }}" class="faq-contact-card__link">{{ section.settings.email_address }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_phone_card -%}
+        <div class="faq-contact-card">
+          <div class="faq-contact-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h3 class="faq-contact-card__title">{{ section.settings.phone_title | default: 'Call Us' }}</h3>
+          <p class="faq-contact-card__text">{{ section.settings.phone_text | default: 'Need help or have inquiries? Call us anytime. We\'re here for you.' }}</p>
+          {%- if section.settings.phone_number != blank -%}
+            <a href="tel:{{ section.settings.phone_number }}" class="faq-contact-card__link">{{ section.settings.phone_number }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+</div>
+
+{% stylesheet %}
+.faq-section {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.faq-section__title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: currentColor;
+}
+
+.faq-section__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+/* FAQ item */
+.faq-item__details {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.faq-item__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  gap: 1rem;
+  user-select: none;
+}
+
+.faq-item__summary::-webkit-details-marker { display: none; }
+
+.faq-item__question {
+  font-size: 1rem;
+  font-weight: 500;
+  flex: 1;
+  color: currentColor;
+}
+
+.faq-item__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.faq-item__icon--close { display: none; }
+
+.faq-item__details[open] .faq-item__icon--plus { display: none; }
+.faq-item__details[open] .faq-item__icon--close { display: flex; }
+
+.faq-item__answer {
+  padding: 0 1.5rem 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #555;
+}
+
+.faq-item__answer p { margin: 0; }
+
+/* Contact cards */
+.faq-section__contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.faq-contact-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.faq-contact-card__icon {
+  margin-bottom: 0.25rem;
+  color: currentColor;
+}
+
+.faq-contact-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: currentColor;
+}
+
+.faq-contact-card__text {
+  font-size: 0.875rem;
+  color: #777;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 220px;
+}
+
+.faq-contact-card__link {
+  font-size: 0.875rem;
+  color: currentColor;
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .faq-section__contact {
+    grid-template-columns: 1fr;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "class": "section-wrapper",
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "¿Cuál es la pregunta?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Escribe aquí la respuesta a esta pregunta.</p>"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Tarjetas de contacto"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email_card",
+      "label": "Mostrar tarjeta de Email",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "email_title",
+      "label": "Título tarjeta email",
+      "default": "Email Us"
+    },
+    {
+      "type": "text",
+      "id": "email_text",
+      "label": "Texto tarjeta email",
+      "default": "Have questions or need assistance? Reach out to us via email. We're here to help!"
+    },
+    {
+      "type": "text",
+      "id": "email_address",
+      "label": "Correo electrónico"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone_card",
+      "label": "Mostrar tarjeta de teléfono",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phone_title",
+      "label": "Título tarjeta teléfono",
+      "default": "Call Us"
+    },
+    {
+      "type": "text",
+      "id": "phone_text",
+      "label": "Texto tarjeta teléfono",
+      "default": "Need help or have inquiries? Call us anytime. We're here for you."
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Número de teléfono"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding superior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding inferior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cómo puedo realizar un pedido?",
+            "answer": "<p>Puedes realizar tu pedido directamente desde nuestra tienda en línea. Selecciona los productos que deseas, agrégalos al carrito y sigue los pasos del proceso de pago.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuáles son los métodos de pago disponibles?",
+            "answer": "<p>Aceptamos tarjetas de crédito y débito (Visa, Mastercard), transferencias bancarias y pagos en efectivo a través de servicios autorizados.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuánto tarda en llegar mi pedido?",
+            "answer": "<p>Los tiempos de entrega varían según tu ubicación. Normalmente entre 3 y 7 días hábiles para envíos nacionales.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cómo puedo rastrear mi pedido?",
+            "answer": "<p>Una vez despachado tu pedido, recibirás un correo con el número de seguimiento para rastrear tu paquete en tiempo real.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuál es la política de devoluciones?",
+            "answer": "<p>Aceptamos devoluciones dentro de los 30 días posteriores a la compra, siempre que el producto esté en su estado original y con su empaque.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
