@@ -37,8 +37,7 @@
     </div>
   {%- endif -%}
 
-  {%- assign has_contact = section.settings.show_email_card or section.settings.show_phone_card -%}
-  {%- if has_contact -%}
+  {%- if section.settings.show_email_card or section.settings.show_phone_card -%}
     <div class="faq-section__contact">
       {%- if section.settings.show_email_card -%}
         <div class="faq-contact-card">
