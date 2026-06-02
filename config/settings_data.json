@@ -292,6 +292,17 @@
               "url": "shopify://collections/stefany-jeans"
             }
           },
+          "menu_item_ErtBCm": {
+            "type": "menu_item",
+            "settings": {
+              "title": "CATÁLOGOS",
+              "url": "shopify://pages/catalogos",
+              "menu_type": "link_only",
+              "show_bottom_bar": false,
+              "shop_all_label": "SHOP ALL",
+              "shop_all_url": ""
+            }
+          },
           "menu_item_69t8JJ": {
             "type": "menu_item",
             "settings": {
@@ -316,17 +327,6 @@
               "image": "shopify://shop_images/BST-O-2274_1.jpg",
               "label": "Sucursales",
               "url": "#"
-            }
-          },
-          "menu_item_ErtBCm": {
-            "type": "menu_item",
-            "settings": {
-              "title": "Catalogos",
-              "url": "shopify://pages/catalogos",
-              "menu_type": "link_only",
-              "show_bottom_bar": false,
-              "shop_all_label": "SHOP ALL",
-              "shop_all_url": ""
             }
           }
         },
@@ -357,10 +357,10 @@
           "activity_card_WPcnYh",
           "activity_card_4d6pta",
           "activity_card_mxrHBH",
+          "menu_item_ErtBCm",
           "menu_item_69t8JJ",
           "menu_linklist_RgE6Kt",
-          "promo_image_xqqehC",
-          "menu_item_ErtBCm"
+          "promo_image_xqqehC"
         ],
         "settings": {
           "logo": "shopify://shop_images/Mask_group.png",
